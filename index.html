@@ -102,7 +102,7 @@
                        class="flex-grow border border-slate-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                        data-i18n="input_placeholder"
                        placeholder="Paste video URL here (e.g., https://example.com/movie.mp4 or .m3u8)" required>
-                <button onclick="loadVideo()"
+                <button id="btn-play"
                         class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg text-base cursor-pointer shadow-sm transition-all text-center whitespace-nowrap"
                         data-i18n="btn_play">
                     Play Now
@@ -172,6 +172,7 @@
 
     <script>
         let art = null;
+        let hlsInstance = null;
         const STORAGE_KEY = 'online_videoplayer_history_v1';
         // CF Workers 代理网关地址预留（后期建立反跨域技术壁垒时配置）
         const PROXY_GATEWAY = 'https://proxy.onlineurlplayer.com/?url=';
@@ -180,11 +181,13 @@
             refreshHistoryList();
             // 默认加载公共测试用例，让首页进场不为空白
             initializePlayer('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4');
+            document.getElementById('btn-play').addEventListener('click', loadVideo);
         };
 
         // 核心函数：根据资源类型构建/重建 ArtPlayer 实例
         function initializePlayer(targetUrl) {
             if (art) { art.destroy(); }
+            if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
 
             // 检查用户是否开启了防跨域/反盗链代理开关
             const isProxyEnabled = document.getElementById('use-proxy').checked;
@@ -205,9 +208,9 @@
                 customType: {
                     m3u8: function(video, url) {
                         if (Hls.isSupported()) {
-                            const hls = new Hls({ maxMaxBufferLength: 30 });
-                            hls.loadSource(url);
-                            hls.attachMedia(video);
+                            hlsInstance = new Hls({ maxMaxBufferLength: 30 });
+                            hlsInstance.loadSource(url);
+                            hlsInstance.attachMedia(video);
                         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
                             video.src = url;
                         }
