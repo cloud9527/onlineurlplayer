@@ -238,7 +238,9 @@
             error_proxy_hint: 'Please check "Enable Stream Proxy" and try again',
             error_url_hint: 'Please check if the link is correct',
             error_format_hint: 'Supports MP4, M3U8, WebM formats',
-            error_network_hint: 'Please check your network and try again'
+            error_network_hint: 'Please check your network and try again',
+            error_empty_url: 'Please enter a valid video link.',
+            error_invalid_url: 'URL must start with http:// or https://'
           },
           zh: {
             // 导航栏
@@ -276,7 +278,9 @@
             error_proxy_hint: '请勾选"启用流代理"后重试',
             error_url_hint: '请检查链接是否正确',
             error_format_hint: '支持 MP4、M3U8、WebM 格式',
-            error_network_hint: '请检查网络后重试'
+            error_network_hint: '请检查网络后重试',
+            error_empty_url: '请输入有效的视频链接。',
+            error_invalid_url: 'URL 必须以 http:// 或 https:// 开头'
           }
         };
 
@@ -372,9 +376,8 @@
 
         // 初始化语言
         function initLanguage() {
-          const saved = localStorage.getItem('lang') || 'en';
-          document.documentElement.setAttribute('lang', saved);
-          updateLanguageButtons(saved);
+          document.documentElement.setAttribute('lang', currentLang);
+          updateLanguageButtons(currentLang);
           updatePageTexts();
         }
 
@@ -417,11 +420,11 @@
         function loadVideo() {
             const urlInput = document.getElementById('video-url').value.trim();
             if (!urlInput) {
-                alert('Please enter a valid video link.');
+                alert(t('error_empty_url'));
                 return;
             }
             if (!urlInput.startsWith('http://') && !urlInput.startsWith('https://')) {
-                alert('URL must start with http:// or https://');
+                alert(t('error_invalid_url'));
                 return;
             }
 
