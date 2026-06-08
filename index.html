@@ -81,6 +81,14 @@
             <div class="flex items-center gap-4 text-sm font-medium text-slate-600">
                 <a href="#faq" class="hover:text-blue-600 transition-colors" data-i18n="nav_faq">FAQ</a>
                 <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-semibold" data-i18n="nav_safe">Client-Side Safe</span>
+                <button id="theme-toggle" onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-slate-100 transition-colors" title="Toggle theme">
+                    <svg id="theme-icon-light" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                    <svg id="theme-icon-dark" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                    </svg>
+                </button>
             </div>
         </div>
     </nav>
@@ -177,11 +185,52 @@
         // CF Workers 代理网关地址预留（后期建立反跨域技术壁垒时配置）
         const PROXY_GATEWAY = 'https://proxy.onlineurlplayer.com/?url=';
 
+        // 主题切换逻辑
+        function toggleTheme() {
+          const html = document.documentElement;
+          const current = html.getAttribute('data-theme');
+          const next = current === 'dark' ? 'light' : 'dark';
+          html.setAttribute('data-theme', next);
+          localStorage.setItem('theme', next);
+
+          // 更新主题图标
+          updateThemeIcon(next);
+
+          // 更新 ArtPlayer 主题色
+          if (art) {
+            art.theme = next === 'dark' ? '#3b82f6' : '#2563eb';
+          }
+        }
+
+        // 初始化主题
+        function initTheme() {
+          const saved = localStorage.getItem('theme');
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const theme = saved || (prefersDark ? 'dark' : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+          updateThemeIcon(theme);
+        }
+
+        // 更新主题图标
+        function updateThemeIcon(theme) {
+          const lightIcon = document.getElementById('theme-icon-light');
+          const darkIcon = document.getElementById('theme-icon-dark');
+
+          if (theme === 'dark') {
+            lightIcon.classList.add('hidden');
+            darkIcon.classList.remove('hidden');
+          } else {
+            lightIcon.classList.remove('hidden');
+            darkIcon.classList.add('hidden');
+          }
+        }
+
         window.onload = function() {
-            refreshHistoryList();
-            // 默认加载公共测试用例，让首页进场不为空白
-            initializePlayer('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4');
-            document.getElementById('btn-play').addEventListener('click', loadVideo);
+          initTheme();
+          refreshHistoryList();
+          // 默认加载公共测试用例，让首页进场不为空白
+          initializePlayer('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4');
+          document.getElementById('btn-play').addEventListener('click', loadVideo);
         };
 
         // 核心函数：根据资源类型构建/重建 ArtPlayer 实例
