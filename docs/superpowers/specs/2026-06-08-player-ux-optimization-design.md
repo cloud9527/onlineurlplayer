@@ -11,6 +11,7 @@
 - 优化不同设备上的响应式适配
 - 改善加载/缓冲状态的用户体验
 - 提供友好的错误处理和反馈
+- 支持多语言切换（默认英文，可切换中文）
 
 ## 技术方案
 
@@ -309,7 +310,153 @@ function showErrorCard(error) {
 
 ---
 
-## 6. 技术实现细节
+## 6. 多语言支持
+
+### 设计目标
+
+- 默认语言：英文
+- 支持切换到中文
+- 预留扩展其他语言的能力
+
+### 实现方式
+
+使用 JavaScript 对象存储多语言文本，通过函数动态切换页面内容。
+
+### 语言配置
+
+```javascript
+const i18n = {
+  en: {
+    // 导航栏
+    nav_faq: 'FAQ',
+    nav_safe: 'Client-Side Safe',
+    
+    // 主标题
+    hero_title: 'Play Video from URL Online',
+    hero_subtitle: 'Fast, free, and web-based video player from link. Perfect for testing streams and instant playback.',
+    
+    // 输入区域
+    input_placeholder: 'Paste video URL here (e.g., https://example.com/movie.mp4 or .m3u8)',
+    btn_play: 'Play Now',
+    proxy_label: 'Enable Stream Proxy',
+    proxy_hint: 'Check this if your link fails due to CORS or Anti-leech errors',
+    
+    // 历史记录
+    history_title: 'Recent Links',
+    
+    // FAQ
+    faq_title: 'Frequently Asked Questions',
+    faq1_q: 'How do I use this online video player from URL?',
+    faq1_a: 'Simply paste your direct video link (URL) into the input field above and click the "Play Now" button. Our player instantly detects the container format and loads your media stream within milliseconds. No registration or software downloads required.',
+    faq2_q: 'Does this player support M3U8 and HLS network resources?',
+    faq2_a: 'Yes, absolutely. This link player natively integrates streaming support for M3U8, HLS live broadcasts, and standard MP4/WebM resources. It serves as a professional, lightweight stream testing tool tailored for developers and video engineers globally.',
+    faq3_q: 'Is it safe to paste and play private links on this website?',
+    faq3_a: 'Your data privacy is completely guaranteed. This application functions 100% on the client-side. The URLs you paste are evaluated and resolved entirely inside your local browser and are never transmitted to any external backend server or database.',
+    
+    // 错误提示
+    error_cors: 'This video link has CORS restrictions',
+    error_notFound: 'Video link is not accessible',
+    error_format: 'Unsupported video format',
+    error_network: 'Network connection error',
+    error_retry: 'Retry',
+    error_proxy_hint: 'Please check "Enable Stream Proxy" and try again',
+    error_url_hint: 'Please check if the link is correct',
+    error_format_hint: 'Supports MP4, M3U8, WebM formats',
+    error_network_hint: 'Please check your network and try again'
+  },
+  zh: {
+    // 导航栏
+    nav_faq: '常见问题',
+    nav_safe: '客户端安全',
+    
+    // 主标题
+    hero_title: '在线视频播放器',
+    hero_subtitle: '快速、免费、基于网页的视频链接播放器。适合测试流媒体和即时播放。',
+    
+    // 输入区域
+    input_placeholder: '粘贴视频链接（如 https://example.com/movie.mp4 或 .m3u8）',
+    btn_play: '立即播放',
+    proxy_label: '启用流代理',
+    proxy_hint: '如果链接因跨域或防盗链失败，请勾选此项',
+    
+    // 历史记录
+    history_title: '最近播放',
+    
+    // FAQ
+    faq_title: '常见问题',
+    faq1_q: '如何使用这个在线视频播放器？',
+    faq1_a: '只需将视频链接粘贴到输入框中，点击"立即播放"按钮。播放器会自动检测格式并加载视频，无需注册或下载软件。',
+    faq2_q: '支持 M3U8 和 HLS 流媒体吗？',
+    faq2_a: '完全支持。播放器原生集成 M3U8、HLS 直播流和标准 MP4/WebM 资源的流媒体支持，是开发者和视频工程师的专业轻量级测试工具。',
+    faq3_q: '在这个网站上粘贴和播放私密链接安全吗？',
+    faq3_a: '您的数据隐私完全有保障。此应用 100% 在客户端运行，粘贴的链接完全在本地浏览器中解析，不会传输到任何外部服务器或数据库。',
+    
+    // 错误提示
+    error_cors: '此视频链接存在跨域限制',
+    error_notFound: '视频链接无法访问',
+    error_format: '不支持的视频格式',
+    error_network: '网络连接异常',
+    error_retry: '重试',
+    error_proxy_hint: '请勾选"启用流代理"后重试',
+    error_url_hint: '请检查链接是否正确',
+    error_format_hint: '支持 MP4、M3U8、WebM 格式',
+    error_network_hint: '请检查网络后重试'
+  }
+};
+```
+
+### 语言切换逻辑
+
+```javascript
+let currentLang = localStorage.getItem('lang') || 'en';
+
+function setLanguage(lang) {
+  currentLang = lang;
+  localStorage.setItem('lang', lang);
+  document.documentElement.setAttribute('lang', lang);
+  updatePageTexts();
+}
+
+function t(key) {
+  return i18n[currentLang][key] || i18n['en'][key] || key;
+}
+
+function updatePageTexts() {
+  // 更新所有带有 data-i18n 属性的元素
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (el.tagName === 'INPUT') {
+      el.placeholder = t(key);
+    } else {
+      el.textContent = t(key);
+    }
+  });
+}
+```
+
+### HTML 标记示例
+
+```html
+<h1 data-i18n="hero_title">Play Video from URL Online</h1>
+<p data-i18n="hero_subtitle">Fast, free, and web-based video player...</p>
+<input data-i18n="input_placeholder" placeholder="Paste video URL here...">
+<button data-i18n="btn_play">Play Now</button>
+```
+
+### 语言切换按钮
+
+在导航栏添加语言切换按钮，显示当前语言和切换选项：
+
+```html
+<div class="lang-switcher">
+  <button onclick="setLanguage('en')" class="{currentLang === 'en' ? 'active' : ''}">EN</button>
+  <button onclick="setLanguage('zh')" class="{currentLang === 'zh' ? 'active' : ''}">中文</button>
+</div>
+```
+
+---
+
+## 7. 技术实现细节
 
 ### 文件结构
 
@@ -364,6 +511,12 @@ function showErrorCard(error) {
    - 实现错误提示组件
    - 测试各种错误场景
 
+5. **第五阶段**：多语言支持
+   - 实现 i18n 语言配置
+   - 添加语言切换按钮
+   - 更新所有页面文本为多语言
+   - 测试语言切换和持久化
+
 ---
 
 ## 预期效果
@@ -372,4 +525,5 @@ function showErrorCard(error) {
 - 播放器控件更加精致、易用
 - 在不同设备上提供一致的体验
 - 加载和错误状态更加友好
+- 用户可以在英文和中文之间切换语言
 - 整体用户体验显著提升
