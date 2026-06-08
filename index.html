@@ -234,7 +234,8 @@
 
         // LocalStorage 历史记录管道
         function commitUrlToHistory(url) {
-            let list = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            let list = [];
+            try { list = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch(e) { list = []; }
             list = list.filter(item => item !== url); // 深度去重
             list.unshift(url); // 推入顶层
             if (list.length > 5) list.pop(); // 节制长度为5条
@@ -243,7 +244,8 @@
         }
 
         function refreshHistoryList() {
-            const list = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            let list = [];
+            try { list = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch(e) { list = []; }
             const box = document.getElementById('history-box');
             const container = document.getElementById('history-list');
 
@@ -253,13 +255,15 @@
             }
 
             box.classList.remove('hidden');
-            container.innerHTML = list.map(url => `
-                <div onclick="playbackFromHistory('${url}')"
-                     class="text-sm text-blue-600 hover:text-blue-800 font-mono truncate cursor-pointer bg-slate-50 hover:bg-slate-100 p-2 rounded border border-slate-200 transition-all"
-                     title="${url}">
-                    ${url}
-                </div>
-            `).join('');
+            container.innerHTML = '';
+            list.forEach(url => {
+                const div = document.createElement('div');
+                div.className = 'text-sm text-blue-600 hover:text-blue-800 font-mono truncate cursor-pointer bg-slate-50 hover:bg-slate-100 p-2 rounded border border-slate-200 transition-all';
+                div.title = url;
+                div.textContent = url;
+                div.addEventListener('click', () => playbackFromHistory(url));
+                container.appendChild(div);
+            });
         }
 
         function playbackFromHistory(url) {
