@@ -69,26 +69,55 @@
           color: var(--accent);
         }
 
+        /* 暗色模式输入框样式 */
+        [data-theme="dark"] input[type="url"],
+        [data-theme="dark"] input[type="text"],
+        [data-theme="dark"] input[type="checkbox"] {
+          background-color: var(--bg-secondary);
+          color: var(--text-primary);
+          border-color: var(--border-color);
+        }
+
+        /* 暗色模式白色背景覆盖 */
+        [data-theme="dark"] .bg-white {
+          background-color: var(--bg-secondary);
+        }
+
+        [data-theme="dark"] .border-slate-200,
+        [data-theme="dark"] .border-slate-100 {
+          border-color: var(--border-color);
+        }
+
+        [data-theme="dark"] .text-slate-800,
+        [data-theme="dark"] .text-slate-700,
+        [data-theme="dark"] .text-slate-600 {
+          color: var(--text-primary);
+        }
+
+        [data-theme="dark"] .text-slate-500,
+        [data-theme="dark"] .text-slate-400 {
+          color: var(--text-secondary);
+        }
+
+        [data-theme="dark"] .bg-slate-50 {
+          background-color: var(--bg-primary);
+        }
+
+        [data-theme="dark"] .hover\:bg-slate-100:hover {
+          background-color: #334155;
+        }
+
+        [data-theme="dark"] .bg-slate-100 {
+          background-color: #1e293b;
+        }
+        }
+
         .accent-bg {
           background-color: var(--accent);
         }
 
         .accent-bg:hover {
           background-color: var(--accent-hover);
-        }
-
-        /* 语言切换按钮样式 */
-        #lang-en, #lang-zh {
-          color: var(--text-secondary);
-        }
-
-        #lang-en:hover, #lang-zh:hover {
-          color: var(--text-primary);
-        }
-
-        #lang-en.active, #lang-zh.active {
-          background-color: var(--accent);
-          color: white;
         }
 
         /* 播放器控件优化 */
@@ -191,10 +220,10 @@
                 <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-semibold" data-i18n="nav_safe">Client-Side Safe</span>
 
                 <!-- 语言切换 -->
-                <div class="flex items-center gap-1 bg-slate-100 rounded-lg p-1">
-                    <button onclick="setLanguage('en')" class="px-2 py-1 rounded text-xs font-medium transition-colors" id="lang-en">EN</button>
-                    <button onclick="setLanguage('zh')" class="px-2 py-1 rounded text-xs font-medium transition-colors" id="lang-zh">中文</button>
-                </div>
+                <button onclick="toggleLanguage()" class="p-2 rounded-lg hover:bg-slate-100 transition-colors flex items-center gap-1.5" title="Switch language">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>
+                    <span class="text-xs font-medium" id="lang-label">中</span>
+                </button>
 
                 <button id="theme-toggle" onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-slate-100 transition-colors" title="Toggle theme">
                     <svg id="theme-icon-light" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -425,7 +454,12 @@
           localStorage.setItem('lang', lang);
           document.documentElement.setAttribute('lang', lang);
           updatePageTexts();
-          updateLanguageButtons(lang);
+        }
+
+        // 切换语言
+        function toggleLanguage() {
+          setLanguage(currentLang === 'en' ? 'zh' : 'en');
+          document.getElementById('lang-label').textContent = currentLang === 'en' ? '中' : 'EN';
         }
 
         // 翻译函数
@@ -443,12 +477,6 @@
               el.textContent = t(key);
             }
           });
-        }
-
-        // 更新语言按钮状态
-        function updateLanguageButtons(lang) {
-          document.getElementById('lang-en').classList.toggle('active', lang === 'en');
-          document.getElementById('lang-zh').classList.toggle('active', lang === 'zh');
         }
 
         let art = null;
@@ -508,7 +536,7 @@
         // 初始化语言
         function initLanguage() {
           document.documentElement.setAttribute('lang', currentLang);
-          updateLanguageButtons(currentLang);
+          document.getElementById('lang-label').textContent = currentLang === 'en' ? '中' : 'EN';
           updatePageTexts();
         }
 
