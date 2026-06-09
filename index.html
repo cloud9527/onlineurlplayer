@@ -355,6 +355,8 @@
 
             // 错误提示
             error_cors: 'This video link has CORS restrictions',
+            error_auth: 'This video link requires authorization',
+            error_auth_hint: 'The source server requires authentication (401). This link cannot be played directly.',
             error_notFound: 'Video link is not accessible',
             error_format: 'Unsupported video format',
             error_network: 'Network connection error',
@@ -399,6 +401,8 @@
 
             // 错误提示
             error_cors: '此视频链接存在跨域限制',
+            error_auth: '此视频链接需要授权访问',
+            error_auth_hint: '源站服务器需要身份验证（401），此链接无法直接播放。',
             error_notFound: '视频链接无法访问',
             error_format: '不支持的视频格式',
             error_network: '网络连接异常',
@@ -518,21 +522,28 @@
            let errorType = 'network';
            const errStr = (error && (error.message || error.type || String(error))) || '';
            
-           if (errStr.includes('CORS') || errStr.includes('cors') || errStr.includes('cross-origin')) {
-             errorType = 'cors';
-           } else if (errStr.includes('404') || errStr.includes('notFound') || errStr.includes('Not Found')) {
-             errorType = 'notFound';
-           } else if (errStr.includes('format') || errStr.includes('FORMAT') || errStr.includes('MEDIA_ERR_SRC_NOT_SUPPORTED') || errStr.includes('DEMUX')) {
-             errorType = 'format';
-           }
+            if (errStr.includes('CORS') || errStr.includes('cors') || errStr.includes('cross-origin')) {
+              errorType = 'cors';
+            } else if (errStr.includes('AUTH') || errStr.includes('401') || errStr.includes('Unauthorized')) {
+              errorType = 'auth';
+            } else if (errStr.includes('404') || errStr.includes('notFound') || errStr.includes('Not Found')) {
+              errorType = 'notFound';
+            } else if (errStr.includes('format') || errStr.includes('FORMAT') || errStr.includes('MEDIA_ERR_SRC_NOT_SUPPORTED') || errStr.includes('DEMUX')) {
+              errorType = 'format';
+            }
           
-          const errorInfo = {
-            cors: {
-              title: t('error_cors'),
-              message: t('error_cors'),
-              suggestion: t('error_proxy_hint')
-            },
-            notFound: {
+           const errorInfo = {
+             cors: {
+               title: t('error_cors'),
+               message: t('error_cors'),
+               suggestion: t('error_proxy_hint')
+             },
+             auth: {
+               title: t('error_auth'),
+               message: t('error_auth'),
+               suggestion: t('error_auth_hint')
+             },
+             notFound: {
               title: t('error_notFound'),
               message: t('error_notFound'),
               suggestion: t('error_url_hint')
@@ -609,7 +620,6 @@
             hideError();
 
             const isProxyEnabled = document.getElementById('use-proxy').checked;
-            const finalPlaybackUrl = isProxyEnabled ? `${PROXY_GATEWAY}${encodeURIComponent(targetUrl)}` : targetUrl;
 
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const themeColor = currentTheme === 'dark' ? '#3b82f6' : '#2563eb';
@@ -618,7 +628,7 @@
 
             const artOptions = {
                 container: '#player-container',
-                url: finalPlaybackUrl,
+                url: needCustomType ? targetUrl : (isProxyEnabled ? `${PROXY_GATEWAY}${encodeURIComponent(targetUrl)}` : targetUrl),
                 fullscreen: true,
                 fullscreenWeb: true,
                 playbackRate: true,
@@ -634,14 +644,24 @@
                 artOptions.customType = {
                     m3u8: function(video, url) {
                         if (Hls.isSupported()) {
-                            hlsInstance = new Hls({ maxMaxBufferLength: 30 });
+                            const hlsConfig = { maxMaxBufferLength: 30 };
+                            if (isProxyEnabled) {
+                                hlsConfig.xhrSetup = function(xhr, requestUrl) {
+                                    xhr.open('GET', PROXY_GATEWAY + encodeURIComponent(requestUrl));
+                                };
+                            }
+                            hlsInstance = new Hls(hlsConfig);
                             hlsInstance.loadSource(url);
                             hlsInstance.attachMedia(video);
                             hlsInstance.on(Hls.Events.ERROR, function(event, data) {
                                 if (data.fatal) {
                                     switch (data.type) {
                                         case Hls.ErrorTypes.NETWORK_ERROR:
-                                            showError({ message: 'CORS' });
+                                            if (data.response && data.response.code === 401) {
+                                                showError({ message: 'AUTH' });
+                                            } else {
+                                                showError({ message: 'CORS' });
+                                            }
                                             break;
                                         case Hls.ErrorTypes.MEDIA_ERROR:
                                             hlsInstance.recoverMediaError();
@@ -654,7 +674,7 @@
                                 }
                             });
                         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                            video.src = url;
+                            video.src = isProxyEnabled ? `${PROXY_GATEWAY}${encodeURIComponent(url)}` : url;
                         }
                     }
                 };

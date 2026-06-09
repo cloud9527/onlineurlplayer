@@ -3,6 +3,18 @@
 
 export default {
   async fetch(request) {
+    if (request.method === 'OPTIONS') {
+      return new Response(null, {
+        status: 204,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS',
+          'Access-Control-Allow-Headers': '*',
+          'Access-Control-Max-Age': '86400',
+        },
+      });
+    }
+
     const url = new URL(request.url);
     const targetUrl = url.searchParams.get('url');
 
@@ -10,7 +22,6 @@ export default {
       return new Response('Missing "url" parameter', { status: 400 });
     }
 
-    // 验证 URL 格式
     let decodedUrl;
     try {
       decodedUrl = decodeURIComponent(targetUrl);
@@ -19,37 +30,37 @@ export default {
       return new Response('Invalid URL', { status: 400 });
     }
 
-    // 白名单：只允许视频流媒体域名（可选安全措施）
-    // const allowedDomains = ['cdn.enetres.net', 'example.com'];
-    // const hostname = new URL(decodedUrl).hostname;
-    // if (!allowedDomains.some(d => hostname.endsWith(d))) {
-    //   return new Response('Domain not allowed', { status: 403 });
-    // }
+    const targetParsed = new URL(decodedUrl);
 
     try {
       const response = await fetch(decodedUrl, {
         headers: {
-          'User-Agent': 'Mozilla/5.0',
+          'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/137.0.0.0 Safari/537.36',
           'Accept': '*/*',
-          'Origin': request.headers.get('Origin') || '',
+          'Referer': targetParsed.origin + '/',
         },
       });
 
-      // 创建新的响应，添加 CORS 头
-      const newResponse = new Response(response.body, {
+      const newHeaders = {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS',
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Max-Age': '86400',
+        'Access-Control-Expose-Headers': 'Content-Length, Content-Range',
+      };
+
+      const ct = response.headers.get('Content-Type');
+      if (ct) newHeaders['Content-Type'] = ct;
+      const cl = response.headers.get('Content-Length');
+      if (cl) newHeaders['Content-Length'] = cl;
+      const cr = response.headers.get('Content-Range');
+      if (cr) newHeaders['Content-Range'] = cr;
+
+      return new Response(response.body, {
         status: response.status,
         statusText: response.statusText,
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, HEAD, OPTIONS',
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Max-Age': '86400',
-          'Content-Type': response.headers.get('Content-Type') || 'application/octet-stream',
-          'Cache-Control': 'no-cache',
-        },
+        headers: newHeaders,
       });
-
-      return newResponse;
     } catch (error) {
       return new Response(`Proxy error: ${error.message}`, { status: 502 });
     }
