@@ -7,6 +7,11 @@
     <title>Online Video Player from URL - Play Video Online from Link</title>
     <meta name="description" content="Free online video player from URL. Easily play, stream and test MP4, M3U8, HLS, and WebM video links online instantly. Safe, fast, and no installation required.">
 
+    <meta property="og:title" content="Online Video Player from URL - Free Link Stream Tester">
+    <meta property="og:description" content="Stream and test video URLs instantly including MP4, M3U8, and HLS live links. 100% client-side, no registration required.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://onlineurlplayer.com">
+
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="https://cdn.jsdelivr.net/npm/artplayer/dist/artplayer.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -85,6 +90,95 @@
           background-color: var(--accent);
           color: white;
         }
+
+        /* 播放器控件优化 */
+        .art-control-progress {
+          height: 20px;
+          cursor: pointer;
+        }
+
+        .art-control-progress .art-progress-loaded {
+          background: rgba(255, 255, 255, 0.3);
+        }
+
+        .art-control-progress .art-progress-played {
+          background: var(--accent);
+        }
+
+        .art-control-playback {
+          transition: transform 0.2s ease;
+        }
+
+        .art-control-playback:active {
+          transform: scale(0.9);
+        }
+
+        .art-control-volume .art-volume-slider {
+          width: 80px;
+          height: 4px;
+          border-radius: 2px;
+        }
+
+        /* 播放器主题色 */
+        .art-video-player {
+          --art-theme: var(--accent);
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 767px) {
+          .art-control {
+            min-height: 44px;
+          }
+          
+          .art-control-volume {
+            display: none;
+          }
+          
+          .history-item {
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+          }
+          
+          /* 移动端输入区域垂直排列 */
+          .input-group {
+            flex-direction: column;
+          }
+          
+          .input-group button {
+            width: 100%;
+          }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .art-control-pip {
+            display: none;
+          }
+        }
+
+        /* 播放器容器响应式 */
+        #player-container {
+          width: 100%;
+          max-width: 100%;
+        }
+
+        @media (min-width: 1024px) {
+          #player-container {
+            max-width: 900px;
+            margin: 0 auto;
+          }
+        }
+
+        /* 错误提示 */
+        #error-overlay {
+          z-index: 20;
+          transition: opacity 0.3s ease;
+          display: flex;
+        }
+
+        #error-overlay.hidden {
+          display: none;
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen antialiased flex flex-col">
@@ -126,7 +220,7 @@
         </header>
 
         <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4 mb-6">
-            <div class="flex flex-col sm:flex-row gap-3">
+            <div class="flex flex-col sm:flex-row gap-3 input-group">
                 <input type="url" id="video-url"
                        class="flex-grow border border-slate-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                        data-i18n="input_placeholder"
@@ -147,7 +241,33 @@
             </div>
         </div>
 
-        <div id="player-container" class="w-full rounded-xl shadow-lg overflow-hidden border border-slate-900 mb-6 aspect-video"></div>
+        <div class="w-full rounded-xl shadow-lg overflow-hidden border border-slate-900 mb-6 relative">
+            <div id="player-container" class="aspect-video">
+                <div id="welcome-placeholder" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#000;color:#fff;">
+                    <div style="font-size:48px;margin-bottom:16px;">🎬</div>
+                    <div style="font-size:18px;font-weight:600;margin-bottom:8px;" data-i18n="placeholder_main">Paste a video URL to start playing</div>
+                    <div style="font-size:14px;color:#94a3b8;" data-i18n="placeholder_sub">Supports MP4, M3U8, WebM formats</div>
+                </div>
+            </div>
+            <!-- 错误提示 -->
+            <div id="error-overlay" class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden" style="z-index: 20;">
+                <div class="text-center max-w-md mx-4">
+                    <div class="bg-white rounded-lg p-6 shadow-xl">
+                        <div class="text-red-500 mb-4">
+                            <svg class="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2" id="error-title">Error</h3>
+                        <p class="text-gray-600 mb-4" id="error-message">An error occurred</p>
+                        <p class="text-sm text-gray-500 mb-4" id="error-suggestion"></p>
+                        <button onclick="retryVideo()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-4 py-2 rounded-lg transition-colors" data-i18n="error_retry">
+                            Retry
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div id="history-box" class="bg-white rounded-xl border border-slate-200 p-5 mb-12 shadow-sm hidden">
             <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3" data-i18n="history_title">Recent Links</h3>
@@ -169,7 +289,7 @@
                     <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq1_a">Simply paste your direct video link (URL) into the input field above and click the "Play Now" button. Our player instantly detects the container format and loads your media stream within milliseconds. No registration or software downloads required.</p>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
-                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq2_q">Does this player support M3U8 and HLS network resources?</h3>
+                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq2_q">Does this player support M3U8 player online and HLS live streams testing?</h3>
                     <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq2_a">Yes, absolutely. This link player natively integrates streaming support for M3U8, HLS live broadcasts, and standard MP4/WebM resources. It serves as a professional, lightweight stream testing tool tailored for developers and video engineers globally.</p>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
@@ -220,11 +340,15 @@
             // 历史记录
             history_title: 'Recent Links',
 
+            // 欢迎占位符
+            placeholder_main: 'Paste a video URL to start playing',
+            placeholder_sub: 'Supports MP4, M3U8, WebM formats',
+
             // FAQ
             faq_title: 'Frequently Asked Questions',
             faq1_q: 'How do I use this online video player from URL?',
             faq1_a: 'Simply paste your direct video link (URL) into the input field above and click the "Play Now" button. Our player instantly detects the container format and loads your media stream within milliseconds. No registration or software downloads required.',
-            faq2_q: 'Does this player support M3U8 and HLS network resources?',
+            faq2_q: 'Does this player support M3U8 player online and HLS live streams testing?',
             faq2_a: 'Yes, absolutely. This link player natively integrates streaming support for M3U8, HLS live broadcasts, and standard MP4/WebM resources. It serves as a professional, lightweight stream testing tool tailored for developers and video engineers globally.',
             faq3_q: 'Is it safe to paste and play private links on this website?',
             faq3_a: 'Your data privacy is completely guaranteed. This application functions 100% on the client-side. The URLs you paste are evaluated and resolved entirely inside your local browser and are never transmitted to any external backend server or database.',
@@ -260,11 +384,15 @@
             // 历史记录
             history_title: '最近播放',
 
+            // 欢迎占位符
+            placeholder_main: '粘贴视频链接开始播放',
+            placeholder_sub: '支持 MP4、M3U8、WebM 格式',
+
             // FAQ
             faq_title: '常见问题',
-            faq1_q: '如何使用这个在线视频播放器？',
+            faq1_q: '如何使用这个在线视频播放器从URL播放？',
             faq1_a: '只需将视频链接粘贴到输入框中，点击"立即播放"按钮。播放器会自动检测格式并加载视频，无需注册或下载软件。',
-            faq2_q: '支持 M3U8 和 HLS 流媒体吗？',
+            faq2_q: '支持 M3U8 在线播放器和 HLS 直播流测试吗？',
             faq2_a: '完全支持。播放器原生集成 M3U8、HLS 直播流和标准 MP4/WebM 资源的流媒体支持，是开发者和视频工程师的专业轻量级测试工具。',
             faq3_q: '在这个网站上粘贴和播放私密链接安全吗？',
             faq3_a: '您的数据隐私完全有保障。此应用 100% 在客户端运行，粘贴的链接完全在本地浏览器中解析，不会传输到任何外部服务器或数据库。',
@@ -369,8 +497,7 @@
           initTheme();
           initLanguage();
           refreshHistoryList();
-          // 默认加载公共测试用例，让首页进场不为空白
-          initializePlayer('https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4');
+          showWelcomePlaceholder();
           document.getElementById('btn-play').addEventListener('click', loadVideo);
         };
 
@@ -381,16 +508,115 @@
           updatePageTexts();
         }
 
+        // 错误处理
+         function showError(error) {
+           const overlay = document.getElementById('error-overlay');
+           const title = document.getElementById('error-title');
+           const message = document.getElementById('error-message');
+           const suggestion = document.getElementById('error-suggestion');
+           
+           let errorType = 'network';
+           const errStr = (error && (error.message || error.type || String(error))) || '';
+           
+           if (errStr.includes('CORS') || errStr.includes('cors') || errStr.includes('cross-origin')) {
+             errorType = 'cors';
+           } else if (errStr.includes('404') || errStr.includes('notFound') || errStr.includes('Not Found')) {
+             errorType = 'notFound';
+           } else if (errStr.includes('format') || errStr.includes('FORMAT') || errStr.includes('MEDIA_ERR_SRC_NOT_SUPPORTED') || errStr.includes('DEMUX')) {
+             errorType = 'format';
+           }
+          
+          const errorInfo = {
+            cors: {
+              title: t('error_cors'),
+              message: t('error_cors'),
+              suggestion: t('error_proxy_hint')
+            },
+            notFound: {
+              title: t('error_notFound'),
+              message: t('error_notFound'),
+              suggestion: t('error_url_hint')
+            },
+            format: {
+              title: t('error_format'),
+              message: t('error_format'),
+              suggestion: t('error_format_hint')
+            },
+            network: {
+              title: t('error_network'),
+              message: t('error_network'),
+              suggestion: t('error_network_hint')
+            }
+          };
+          
+          const info = errorInfo[errorType] || errorInfo.network;
+          
+          title.textContent = info.title;
+          message.textContent = info.message;
+          suggestion.textContent = info.suggestion;
+          
+          overlay.classList.remove('hidden');
+        }
+
+        function hideError() {
+          const overlay = document.getElementById('error-overlay');
+          overlay.classList.add('hidden');
+        }
+
+        // 显示欢迎占位提示（更新文本内容）
+        function showWelcomePlaceholder() {
+          const placeholder = document.getElementById('welcome-placeholder');
+          if (placeholder) {
+            const mainText = placeholder.querySelector('[data-i18n="placeholder_main"]');
+            const subText = placeholder.querySelector('[data-i18n="placeholder_sub"]');
+            if (mainText) mainText.textContent = t('placeholder_main');
+            if (subText) subText.textContent = t('placeholder_sub');
+          }
+        }
+
+        function retryVideo() {
+          hideError();
+          const url = document.getElementById('video-url').value.trim();
+          if (url) {
+            initializePlayer(url);
+          } else {
+            // 重新创建欢迎占位符
+            const container = document.getElementById('player-container');
+            container.innerHTML = `
+              <div id="welcome-placeholder" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#000;color:#fff;">
+                <div style="font-size:48px;margin-bottom:16px;">🎬</div>
+                <div style="font-size:18px;font-weight:600;margin-bottom:8px;" data-i18n="placeholder_main">${t('placeholder_main')}</div>
+                <div style="font-size:14px;color:#94a3b8;" data-i18n="placeholder_sub">${t('placeholder_sub')}</div>
+              </div>
+            `;
+          }
+        }
+
+        function isM3U8(url) {
+            const cleanUrl = url.split('?')[0].split('#')[0].toLowerCase();
+            return cleanUrl.endsWith('.m3u8');
+        }
+
         // 核心函数：根据资源类型构建/重建 ArtPlayer 实例
         function initializePlayer(targetUrl) {
             if (art) { art.destroy(); }
             if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
 
-            // 检查用户是否开启了防跨域/反盗链代理开关
+            // 移除欢迎占位符
+            const placeholder = document.getElementById('welcome-placeholder');
+            if (placeholder) { placeholder.remove(); }
+
+            hideError();
+
             const isProxyEnabled = document.getElementById('use-proxy').checked;
             const finalPlaybackUrl = isProxyEnabled ? `${PROXY_GATEWAY}${encodeURIComponent(targetUrl)}` : targetUrl;
 
-            art = new Artplayer({
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const themeColor = currentTheme === 'dark' ? '#3b82f6' : '#2563eb';
+
+            const needCustomType = isM3U8(targetUrl);
+
+            const artOptions = {
                 container: '#player-container',
                 url: finalPlaybackUrl,
                 fullscreen: true,
@@ -398,22 +624,72 @@
                 playbackRate: true,
                 aspectRatio: true,
                 setting: true,
-                pip: true,
+                pip: window.innerWidth >= 768,
                 autoSize: true,
-                theme: '#2563eb',
-                // 核心看家本领：挂载自定义解码钩子拦截 M3U8 流
-                customType: {
+                theme: themeColor,
+            };
+
+            if (needCustomType) {
+                artOptions.type = 'm3u8';
+                artOptions.customType = {
                     m3u8: function(video, url) {
                         if (Hls.isSupported()) {
                             hlsInstance = new Hls({ maxMaxBufferLength: 30 });
                             hlsInstance.loadSource(url);
                             hlsInstance.attachMedia(video);
+                            hlsInstance.on(Hls.Events.ERROR, function(event, data) {
+                                if (data.fatal) {
+                                    switch (data.type) {
+                                        case Hls.ErrorTypes.NETWORK_ERROR:
+                                            showError({ message: 'CORS' });
+                                            break;
+                                        case Hls.ErrorTypes.MEDIA_ERROR:
+                                            hlsInstance.recoverMediaError();
+                                            break;
+                                        default:
+                                            showError({ message: 'format' });
+                                            hlsInstance.destroy();
+                                            break;
+                                    }
+                                }
+                            });
                         } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
                             video.src = url;
                         }
                     }
-                }
-            });
+                };
+            }
+
+            art = new Artplayer(artOptions);
+
+            // 监听播放器事件
+             art.on('video:playing', () => {
+                 hideError();
+             });
+
+             art.on('video:canplay', () => {
+                 hideError();
+             });
+
+             art.on('ready', () => {
+                 hideError();
+             });
+
+             art.on('video:error', (error) => {
+                 const video = art.video;
+                 if (video && video.error) {
+                     const code = video.error.code;
+                     if (code === 4) {
+                         showError({ message: 'FORMAT MEDIA_ERR_SRC_NOT_SUPPORTED' });
+                     } else if (code === 2) {
+                         showError({ message: 'NETWORK 404' });
+                     } else {
+                         showError(error);
+                     }
+                 } else {
+                     showError(error);
+                 }
+             });
         }
 
         // 按钮触发入口

@@ -247,19 +247,34 @@ function initTheme() {
 
 ```javascript
 art.on('video:waiting', () => {
-  showLoadingAnimation();
+  showLoading();
 });
 
 art.on('video:playing', () => {
-  hideLoadingAnimation();
+  hideLoading();
+  hideError();
+});
+
+art.on('video:canplay', () => {
+  hideLoading();
+});
+
+art.on('ready', () => {
+  hideLoading();
 });
 
 art.on('video:error', (error) => {
-  showErrorCard(error);
-});
-
-art.on('video:progress', (event) => {
-  updateBufferProgress(event);
+  hideLoading();
+  // error 参数不是标准 Error 对象，用 video.error.code 判断
+  const video = art.video;
+  if (video && video.error) {
+    const code = video.error.code;
+    if (code === 4) showError({ message: 'FORMAT MEDIA_ERR_SRC_NOT_SUPPORTED' });
+    else if (code === 2) showError({ message: 'NETWORK 404' });
+    else showError(error);
+  } else {
+    showError(error);
+  }
 });
 ```
 
@@ -299,36 +314,20 @@ art.on('video:progress', (event) => {
 
 ```javascript
 function showErrorCard(error) {
-  const errorTypes = {
-    cors: {
-      title: '跨域限制',
-      message: '此视频链接存在跨域限制',
-      suggestion: '请勾选"启用流代理"选项后重试',
-      color: 'yellow'
-    },
-    notFound: {
-      title: '链接失效',
-      message: '视频链接无法访问',
-      suggestion: '请检查链接是否正确',
-      color: 'red'
-    },
-    format: {
-      title: '格式不支持',
-      message: '不支持的视频格式',
-      suggestion: '支持 MP4、M3U8、WebM 等格式',
-      color: 'orange'
-    },
-    network: {
-      title: '网络错误',
-      message: '网络连接异常',
-      suggestion: '请检查网络后重试',
-      color: 'red'
-    }
-  };
-  
-  // 显示对应的错误卡片
-  const errorInfo = errorTypes[error.type] || errorTypes.network;
-  displayErrorCard(errorInfo);
+  // 注意：ArtPlayer video:error 事件的 error 不是标准 Error 对象
+  // 需要用字符串匹配或 video.error.code 判断类型
+  const errStr = (error && (error.message || error.type || String(error))) || '';
+  let errorType = 'network';
+
+  if (errStr.includes('CORS') || errStr.includes('cors') || errStr.includes('cross-origin')) {
+    errorType = 'cors';
+  } else if (errStr.includes('404') || errStr.includes('notFound') || errStr.includes('Not Found')) {
+    errorType = 'notFound';
+  } else if (errStr.includes('FORMAT') || errStr.includes('MEDIA_ERR_SRC_NOT_SUPPORTED') || errStr.includes('format')) {
+    errorType = 'format';
+  }
+
+  // ...显示对应的错误卡片
 }
 ```
 
