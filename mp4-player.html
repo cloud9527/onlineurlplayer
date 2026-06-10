@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Online URL Player - Play M3U8, MP4, HLS, DASH, WebM Streams</title>
-    <meta name="description" content="A free web tool to play and test video URLs online. Supports M3U8, MP4, HLS, DASH, FLV, and WebM streams. Paste your link and play instantly, no registration required.">
+    <title>Online MP4 Player - Play MP4 Videos Online</title>
+    <meta name="description" content="Free online MP4 player. Play and test MP4 video URLs instantly. Paste your MP4 link and watch videos directly in your browser. No registration required.">
 
-    <meta property="og:title" content="Online Video Player from URL - Free Link Stream Tester">
-    <meta property="og:description" content="Stream and test video URLs instantly including MP4, M3U8, and HLS live links. 100% client-side, no registration required.">
+    <meta property="og:title" content="Online MP4 Player - Free Video URL Tester">
+    <meta property="og:description" content="Play and test MP4 video URLs online. Supports HD and 4K MP4 files. 100% client-side, no registration required.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://onlineurlplayer.com">
+    <meta property="og:url" content="https://onlineurlplayer.com/mp4-player">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "Online URL Player",
-      "url": "https://onlineurlplayer.com",
-      "description": "A free web tool to play and test video URLs online. Supports M3U8, MP4, HLS, DASH, FLV, and WebM streams.",
+      "name": "Online MP4 Player",
+      "url": "https://onlineurlplayer.com/mp4-player",
+      "description": "Free online MP4 player. Play and test MP4 video URLs instantly in your browser. Supports HD and 4K MP4 files.",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires HTML5 support.",
@@ -28,61 +28,11 @@
         "priceCurrency": "USD"
       },
       "featureList": [
-        "Play M3U8/HLS streams",
-        "Play MP4 videos",
-        "Play WebM videos",
-        "Play DASH streams",
+        "Play MP4 videos from URL",
+        "Support HD and 4K MP4 files",
         "CORS proxy support",
-        "No registration required"
-      ]
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How do I use this online video player from URL?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Simply paste your direct video link (URL) into the input field above and click the 'Play Now' button. Our player instantly detects the container format and loads your media stream within milliseconds. No registration or software downloads required."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Does this player support M3U8 player online and HLS live streams testing?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, absolutely. This link player natively integrates streaming support for M3U8, HLS live broadcasts, and standard MP4/WebM resources. It serves as a professional, lightweight stream testing tool tailored for developers and video engineers globally."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Why does my M3U8 or video link fail to play?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The most common reason is CORS (Cross-Origin Resource Sharing) restrictions. Video servers often block direct playback from other websites. To fix this, check the 'Enable Stream Proxy' option below the input field. This routes the video through our proxy server, bypassing CORS limitations."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is HLS and M3U8 video streaming?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "HLS (HTTP Live Streaming) is a protocol developed by Apple for streaming video content over the internet. M3U8 is the file format used for HLS playlists - it's a text file that contains URLs of video segments. HLS is widely used for live streaming and on-demand video because it adapts to different network conditions."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is it safe to paste and play private links on this website?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Your data privacy is completely guaranteed. This application functions 100% on the client-side. The URLs you paste are evaluated and resolved entirely inside your local browser and are never transmitted to any external backend server or database."
-          }
-        }
+        "No registration required",
+        "100% client-side playback"
       ]
     }
     </script>
@@ -92,10 +42,8 @@
     <script defer src="https://cdn.jsdelivr.net/npm/artplayer/dist/artplayer.js"></script>
 
     <style>
-        /* 避免播放器组件加载前的闪烁 */
         #player-container { background-color: #000; min-height: 480px; }
 
-        /* 主题变量 */
         :root, [data-theme="light"] {
           --bg-primary: #f8fafc;
           --bg-secondary: #ffffff;
@@ -118,7 +66,6 @@
           --accent-hover: #60a5fa;
         }
 
-        /* 使用主题变量 */
         body {
           background-color: var(--bg-primary);
           color: var(--text-primary);
@@ -144,7 +91,6 @@
           color: var(--accent);
         }
 
-        /* 暗色模式输入框样式 */
         [data-theme="dark"] input[type="url"],
         [data-theme="dark"] input[type="text"],
         [data-theme="dark"] input[type="checkbox"] {
@@ -153,7 +99,6 @@
           border-color: var(--border-color);
         }
 
-        /* 暗色模式白色背景覆盖 */
         [data-theme="dark"] .bg-white {
           background-color: var(--bg-secondary);
         }
@@ -185,7 +130,6 @@
         [data-theme="dark"] .bg-slate-100 {
           background-color: #1e293b;
         }
-        }
 
         .accent-bg {
           background-color: var(--accent);
@@ -195,7 +139,6 @@
           background-color: var(--accent-hover);
         }
 
-        /* 播放器控件优化 */
         .art-control-progress {
           height: 20px;
           cursor: pointer;
@@ -223,12 +166,10 @@
           border-radius: 2px;
         }
 
-        /* 播放器主题色 */
         .art-video-player {
           --art-theme: var(--accent);
         }
 
-        /* 响应式适配 */
         @media (max-width: 767px) {
           .art-control {
             min-height: 44px;
@@ -244,7 +185,6 @@
             margin-bottom: 8px;
           }
           
-          /* 移动端输入区域垂直排列 */
           .input-group {
             flex-direction: column;
           }
@@ -260,7 +200,6 @@
           }
         }
 
-        /* 播放器容器响应式 */
         #player-container {
           width: 100%;
           max-width: 100%;
@@ -273,7 +212,6 @@
           }
         }
 
-        /* 错误提示 */
         #error-overlay {
           z-index: 20;
           transition: opacity 0.3s ease;
@@ -294,7 +232,6 @@
                 <a href="#faq" class="hover:text-blue-600 transition-colors" data-i18n="nav_faq">FAQ</a>
                 <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-semibold" data-i18n="nav_safe">Client-Side Safe</span>
 
-                <!-- 语言切换 -->
                 <button onclick="toggleLanguage()" class="p-2 rounded-lg hover:bg-slate-100 transition-colors flex items-center gap-1.5" title="Switch language">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>
                     <span class="text-xs font-medium" id="lang-label">中</span>
@@ -316,10 +253,10 @@
 
         <header class="text-center mb-8">
             <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3" data-i18n="hero_title">
-                Play Video from URL Online
+                Online MP4 Player
             </h1>
             <p class="text-base text-slate-500 max-w-xl mx-auto" data-i18n="hero_subtitle">
-                Fast, free, and web-based video player from link. Perfect for testing streams and instant playback.
+                Play and test MP4 video URLs directly in your browser. Perfect for developers and video engineers.
             </p>
         </header>
 
@@ -328,7 +265,7 @@
                 <input type="url" id="video-url"
                        class="flex-grow border border-slate-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                        data-i18n="input_placeholder"
-                       placeholder="Paste video URL here (e.g., https://example.com/movie.mp4 or .m3u8)" required>
+                       placeholder="Paste MP4 video URL here (e.g., https://example.com/video.mp4)" required>
                 <button id="btn-play"
                         class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg text-base cursor-pointer shadow-sm transition-all text-center whitespace-nowrap"
                         data-i18n="btn_play">
@@ -349,11 +286,10 @@
             <div id="player-container" class="aspect-video">
                 <div id="welcome-placeholder" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#000;color:#fff;">
                     <div style="font-size:48px;margin-bottom:16px;">🎬</div>
-                    <div style="font-size:18px;font-weight:600;margin-bottom:8px;" data-i18n="placeholder_main">Paste a video URL to start playing</div>
+                    <div style="font-size:18px;font-weight:600;margin-bottom:8px;" data-i18n="placeholder_main">Paste an MP4 video URL to start playing</div>
                     <div style="font-size:14px;color:#94a3b8;" data-i18n="placeholder_sub">Supports MP4, M3U8, WebM formats</div>
                 </div>
             </div>
-            <!-- 错误提示 -->
             <div id="error-overlay" class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden" style="z-index: 20;">
                 <div class="text-center max-w-md mx-4">
                     <div class="bg-white rounded-lg p-6 shadow-xl">
@@ -385,28 +321,39 @@
             </div>
         </div>
 
+        <section id="mp4-intro" class="mb-10">
+            <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+                <h2 class="text-xl font-bold text-slate-900 mb-3" data-i18n="mp4_intro_title">What is MP4?</h2>
+                <div class="text-sm text-slate-600 leading-relaxed space-y-3" data-i18n="mp4_intro_content">
+                    <p>MP4 (MPEG-4 Part 14) is the most widely used digital multimedia container format in the world. It can store video, audio, subtitles, and still images in a single file. Developed by the International Organization for Standardization (ISO), MP4 has become the universal standard for video distribution across the internet.</p>
+                    <p>MP4 offers excellent compression efficiency while maintaining high video quality, making it ideal for streaming, downloading, and storing video content. It supports advanced codecs like H.264 (AVC) and H.265 (HEVC), enabling HD, 4K, and even 8K video playback. MP4 files are compatible with virtually all devices, browsers, and media players, which is why it remains the preferred format for platforms like YouTube, Vimeo, and social media networks.</p>
+                    <p>Common use cases include online video streaming, video editing workflows, mobile video recording, surveillance systems, and video archiving. Whether you are a developer testing video URLs, a content creator verifying uploads, or simply want to play a video link without downloading it, our online MP4 player provides a seamless, instant playback experience right in your browser.</p>
+                </div>
+            </div>
+        </section>
+
         <section id="faq" class="border-t border-slate-200 pt-10 scroll-mt-6">
             <h2 class="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight text-center sm:text-left" data-i18n="faq_title">Frequently Asked Questions</h2>
             <div class="grid gap-4">
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
-                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq1_q">How do I use this online video player from URL?</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq1_a">Simply paste your direct video link (URL) into the input field above and click the "Play Now" button. Our player instantly detects the container format and loads your media stream within milliseconds. No registration or software downloads required.</p>
+                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq1_q">How do I use this online MP4 player?</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq1_a">Simply paste your MP4 video URL into the input field above and click the "Play Now" button. Our player instantly loads your MP4 file within milliseconds. No registration or software downloads required.</p>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
-                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq2_q">Does this player support M3U8 player online and HLS live streams testing?</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq2_a">Yes, absolutely. This link player natively integrates streaming support for M3U8, HLS live broadcasts, and standard MP4/WebM resources. It serves as a professional, lightweight stream testing tool tailored for developers and video engineers globally.</p>
+                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq2_q">Does this player support HD and 4K MP4 files?</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq2_a">Yes, absolutely. This player supports MP4 files encoded with H.264 and H.265 codecs, including HD (1080p), 4K, and even 8K resolutions. It serves as a professional, lightweight testing tool for developers and video engineers working with MP4 streams.</p>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
                     <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq3_q">Is it safe to paste and play private links on this website?</h3>
                     <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq3_a">Your data privacy is completely guaranteed. This application functions 100% on the client-side. The URLs you paste are evaluated and resolved entirely inside your local browser and are never transmitted to any external backend server or database.</p>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
-                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq4_q">Why does my M3U8 or video link fail to play?</h3>
+                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq4_q">Why does my MP4 video link fail to play?</h3>
                     <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq4_a">The most common reason is CORS (Cross-Origin Resource Sharing) restrictions. Video servers often block direct playback from other websites. To fix this, check the "Enable Stream Proxy" option below the input field. This routes the video through our proxy server, bypassing CORS limitations. Note: We do not store or log any video content.</p>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
-                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq5_q">What is HLS and M3U8 video streaming?</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq5_a">HLS (HTTP Live Streaming) is a protocol developed by Apple for streaming video content over the internet. M3U8 is the file format used for HLS playlists - it's a text file that contains URLs of video segments. HLS is widely used for live streaming and on-demand video because it adapts to different network conditions. Our player fully supports HLS/M3U8 streams with automatic quality switching.</p>
+                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq5_q">What video formats does this player support?</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq5_a">While this page is optimized for MP4 playback, our player also supports M3U8/HLS live streams, WebM, and other HTML5-compatible video formats. Simply paste any video URL and the player will automatically detect the format and load the appropriate decoder.</p>
                 </div>
             </div>
         </section>
@@ -422,7 +369,7 @@
 
     <footer class="bg-white border-t border-slate-200 mt-auto">
         <div class="max-w-5xl mx-auto px-4 h-16 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400 font-medium py-4">
-            <div>© 2026 OnlineURLPlayer. All rights reserved.</div>
+            <div>&copy; 2026 OnlineURLPlayer. All rights reserved.</div>
             <div class="flex gap-4">
                 <a href="#" class="hover:underline">Privacy Policy</a>
                 <a href="#" class="hover:underline">Terms of Service</a>
@@ -432,44 +379,39 @@
     </footer>
 
     <script>
-        // 多语言配置
         const i18n = {
           en: {
-            // 导航栏
             nav_faq: 'FAQ',
             nav_safe: 'Client-Side Safe',
 
-            // 主标题
-            hero_title: 'Play Video from URL Online',
-            hero_subtitle: 'Fast, free, and web-based video player from link. Perfect for testing streams and instant playback.',
+            hero_title: 'Online MP4 Player',
+            hero_subtitle: 'Play and test MP4 video URLs directly in your browser. Perfect for developers and video engineers.',
 
-            // 输入区域
-            input_placeholder: 'Paste video URL here (e.g., https://example.com/movie.mp4 or .m3u8)',
+            input_placeholder: 'Paste MP4 video URL here (e.g., https://example.com/video.mp4)',
             btn_play: 'Play Now',
             proxy_label: 'Enable Stream Proxy',
             proxy_hint: 'Check this if your link fails due to CORS or Anti-leech errors',
 
-            // 历史记录
             history_title: 'Recent Links',
 
-            // 欢迎占位符
-            placeholder_main: 'Paste a video URL to start playing',
+            placeholder_main: 'Paste an MP4 video URL to start playing',
             placeholder_sub: 'Supports MP4, M3U8, WebM formats',
 
-            // FAQ
+            mp4_intro_title: 'What is MP4?',
+            mp4_intro_content: '<p>MP4 (MPEG-4 Part 14) is the most widely used digital multimedia container format in the world. It can store video, audio, subtitles, and still images in a single file. Developed by the International Organization for Standardization (ISO), MP4 has become the universal standard for video distribution across the internet.</p><p>MP4 offers excellent compression efficiency while maintaining high video quality, making it ideal for streaming, downloading, and storing video content. It supports advanced codecs like H.264 (AVC) and H.265 (HEVC), enabling HD, 4K, and even 8K video playback. MP4 files are compatible with virtually all devices, browsers, and media players, which is why it remains the preferred format for platforms like YouTube, Vimeo, and social media networks.</p><p>Common use cases include online video streaming, video editing workflows, mobile video recording, surveillance systems, and video archiving. Whether you are a developer testing video URLs, a content creator verifying uploads, or simply want to play a video link without downloading it, our online MP4 player provides a seamless, instant playback experience right in your browser.</p>',
+
             faq_title: 'Frequently Asked Questions',
-            faq1_q: 'How do I use this online video player from URL?',
-            faq1_a: 'Simply paste your direct video link (URL) into the input field above and click the "Play Now" button. Our player instantly detects the container format and loads your media stream within milliseconds. No registration or software downloads required.',
-            faq2_q: 'Does this player support M3U8 player online and HLS live streams testing?',
-            faq2_a: 'Yes, absolutely. This link player natively integrates streaming support for M3U8, HLS live broadcasts, and standard MP4/WebM resources. It serves as a professional, lightweight stream testing tool tailored for developers and video engineers globally.',
+            faq1_q: 'How do I use this online MP4 player?',
+            faq1_a: 'Simply paste your MP4 video URL into the input field above and click the "Play Now" button. Our player instantly loads your MP4 file within milliseconds. No registration or software downloads required.',
+            faq2_q: 'Does this player support HD and 4K MP4 files?',
+            faq2_a: 'Yes, absolutely. This player supports MP4 files encoded with H.264 and H.265 codecs, including HD (1080p), 4K, and even 8K resolutions. It serves as a professional, lightweight testing tool for developers and video engineers working with MP4 streams.',
             faq3_q: 'Is it safe to paste and play private links on this website?',
             faq3_a: 'Your data privacy is completely guaranteed. This application functions 100% on the client-side. The URLs you paste are evaluated and resolved entirely inside your local browser and are never transmitted to any external backend server or database.',
-            faq4_q: 'Why does my M3U8 or video link fail to play?',
+            faq4_q: 'Why does my MP4 video link fail to play?',
             faq4_a: 'The most common reason is CORS (Cross-Origin Resource Sharing) restrictions. Video servers often block direct playback from other websites. To fix this, check the "Enable Stream Proxy" option below the input field. This routes the video through our proxy server, bypassing CORS limitations. Note: We do not store or log any video content.',
-            faq5_q: 'What is HLS and M3U8 video streaming?',
-            faq5_a: 'HLS (HTTP Live Streaming) is a protocol developed by Apple for streaming video content over the internet. M3U8 is the file format used for HLS playlists - it\'s a text file that contains URLs of video segments. HLS is widely used for live streaming and on-demand video because it adapts to different network conditions. Our player fully supports HLS/M3U8 streams with automatic quality switching.',
+            faq5_q: 'What video formats does this player support?',
+            faq5_a: 'While this page is optimized for MP4 playback, our player also supports M3U8/HLS live streams, WebM, and other HTML5-compatible video formats. Simply paste any video URL and the player will automatically detect the format and load the appropriate decoder.',
 
-            // 错误提示
             error_cors: 'This video link has CORS restrictions',
             error_auth: 'This video link requires authorization',
             error_auth_hint: 'The source server requires authentication (401). This link cannot be played directly.',
@@ -485,41 +427,37 @@
             error_invalid_url: 'URL must start with http:// or https://'
           },
           zh: {
-            // 导航栏
             nav_faq: '常见问题',
             nav_safe: '客户端安全',
 
-            // 主标题
-            hero_title: '在线视频播放器',
-            hero_subtitle: '快速、免费、基于网页的视频链接播放器。适合测试流媒体和即时播放。',
+            hero_title: '在线 MP4 播放器',
+            hero_subtitle: '直接在浏览器中播放和测试 MP4 视频链接。适合开发者和视频工程师使用。',
 
-            // 输入区域
-            input_placeholder: '粘贴视频链接（如 https://example.com/movie.mp4 或 .m3u8）',
+            input_placeholder: '粘贴 MP4 视频链接（如 https://example.com/video.mp4）',
             btn_play: '立即播放',
             proxy_label: '启用流代理',
             proxy_hint: '如果链接因跨域或防盗链失败，请勾选此项',
 
-            // 历史记录
             history_title: '最近播放',
 
-            // 欢迎占位符
-            placeholder_main: '粘贴视频链接开始播放',
+            placeholder_main: '粘贴 MP4 视频链接开始播放',
             placeholder_sub: '支持 MP4、M3U8、WebM 格式',
 
-            // FAQ
+            mp4_intro_title: '什么是 MP4？',
+            mp4_intro_content: '<p>MP4（MPEG-4 Part 14）是全球使用最广泛的数字多媒体容器格式。它可以将视频、音频、字幕和静态图像存储在单个文件中。由国际标准化组织（ISO）开发，MP4 已成为互联网视频分发的通用标准。</p><p>MP4 在保持高视频质量的同时提供出色的压缩效率，非常适合流媒体传输、下载和存储视频内容。它支持 H.264（AVC）和 H.265（HEVC）等高级编码器，可实现高清、4K 甚至 8K 视频播放。MP4 文件兼容几乎所有设备、浏览器和媒体播放器，这也是它仍然是 YouTube、Vimeo 和社交媒体平台首选格式的原因。</p><p>常见应用场景包括在线视频流媒体、视频编辑工作流程、移动视频录制、监控系统和视频归档。无论您是测试视频 URL 的开发者、验证上传内容的创作者，还是只想在不下载的情况下播放视频链接，我们的在线 MP4 播放器都能在浏览器中提供无缝的即时播放体验。</p>',
+
             faq_title: '常见问题',
-            faq1_q: '如何使用这个在线视频播放器从URL播放？',
-            faq1_a: '只需将视频链接粘贴到输入框中，点击"立即播放"按钮。播放器会自动检测格式并加载视频，无需注册或下载软件。',
-            faq2_q: '支持 M3U8 在线播放器和 HLS 直播流测试吗？',
-            faq2_a: '完全支持。播放器原生集成 M3U8、HLS 直播流和标准 MP4/WebM 资源的流媒体支持，是开发者和视频工程师的专业轻量级测试工具。',
+            faq1_q: '如何使用这个在线 MP4 播放器？',
+            faq1_a: '只需将 MP4 视频链接粘贴到输入框中，点击"立即播放"按钮。播放器会立即加载您的 MP4 文件，无需注册或下载软件。',
+            faq2_q: '支持高清和 4K MP4 文件吗？',
+            faq2_a: '完全支持。播放器支持 H.264 和 H.265 编码的 MP4 文件，包括高清（1080p）、4K 甚至 8K 分辨率。它是开发者和视频工程师处理 MP4 流的专业轻量级测试工具。',
             faq3_q: '在这个网站上粘贴和播放私密链接安全吗？',
             faq3_a: '您的数据隐私完全有保障。此应用 100% 在客户端运行，粘贴的链接完全在本地浏览器中解析，不会传输到任何外部服务器或数据库。',
-            faq4_q: '为什么我的 M3U8 或视频链接无法播放？',
+            faq4_q: '为什么我的 MP4 视频链接无法播放？',
             faq4_a: '最常见的原因是 CORS（跨域资源共享）限制。视频服务器通常会阻止其他网站的直接播放。要解决此问题，请勾选输入框下方的"启用流代理"选项。这会将视频通过我们的代理服务器转发，绕过 CORS 限制。注意：我们不会存储或记录任何视频内容。',
-            faq5_q: '什么是 HLS 和 M3U8 视频流？',
-            faq5_a: 'HLS（HTTP Live Streaming）是 Apple 开发的用于在互联网上传输视频内容的协议。M3U8 是用于 HLS 播放列表的文件格式 - 它是一个包含视频片段 URL 的文本文件。HLS 因其能自适应不同网络条件而被广泛用于直播和点播。我们的播放器完全支持 HLS/M3U8 流，并具有自动画质切换功能。',
+            faq5_q: '这个播放器支持哪些视频格式？',
+            faq5_a: '虽然此页面针对 MP4 播放进行了优化，但我们的播放器也支持 M3U8/HLS 直播流、WebM 和其他 HTML5 兼容的视频格式。只需粘贴任何视频链接，播放器将自动检测格式并加载相应的解码器。',
 
-            // 错误提示
             error_cors: '此视频链接存在跨域限制',
             error_auth: '此视频链接需要授权访问',
             error_auth_hint: '源站服务器需要身份验证（401），此链接无法直接播放。',
@@ -536,10 +474,8 @@
           }
         };
 
-        // 当前语言
         let currentLang = localStorage.getItem('lang') || 'en';
 
-        // 语言切换函数
         function setLanguage(lang) {
           currentLang = lang;
           localStorage.setItem('lang', lang);
@@ -547,25 +483,22 @@
           updatePageTexts();
         }
 
-        // 切换语言
         function toggleLanguage() {
           setLanguage(currentLang === 'en' ? 'zh' : 'en');
           document.getElementById('lang-label').textContent = currentLang === 'en' ? '中' : 'EN';
         }
 
-        // 翻译函数
         function t(key) {
           return i18n[currentLang][key] || i18n['en'][key] || key;
         }
 
-        // 更新页面文本
         function updatePageTexts() {
           document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
             if (el.tagName === 'INPUT') {
               el.placeholder = t(key);
             } else {
-              el.textContent = t(key);
+              el.innerHTML = t(key);
             }
           });
         }
@@ -573,27 +506,20 @@
         let art = null;
         let hlsInstance = null;
         const STORAGE_KEY = 'online_videoplayer_history_v1';
-        // CF Workers 代理网关地址预留（后期建立反跨域技术壁垒时配置）
         const PROXY_GATEWAY = 'https://onlineurlplayer.wangjing09527.workers.dev/?url=';
 
-        // 主题切换逻辑
         function toggleTheme() {
           const html = document.documentElement;
           const current = html.getAttribute('data-theme');
           const next = current === 'dark' ? 'light' : 'dark';
           html.setAttribute('data-theme', next);
           localStorage.setItem('theme', next);
-
-          // 更新主题图标
           updateThemeIcon(next);
-
-          // 更新 ArtPlayer 主题色
           if (art) {
             art.theme = next === 'dark' ? '#3b82f6' : '#2563eb';
           }
         }
 
-        // 初始化主题
         function initTheme() {
           const saved = localStorage.getItem('theme');
           const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -602,11 +528,9 @@
           updateThemeIcon(theme);
         }
 
-        // 更新主题图标
         function updateThemeIcon(theme) {
           const lightIcon = document.getElementById('theme-icon-light');
           const darkIcon = document.getElementById('theme-icon-dark');
-
           if (theme === 'dark') {
             lightIcon.classList.add('hidden');
             darkIcon.classList.remove('hidden');
@@ -624,45 +548,43 @@
           document.getElementById('btn-play').addEventListener('click', loadVideo);
         };
 
-        // 初始化语言
         function initLanguage() {
           document.documentElement.setAttribute('lang', currentLang);
           document.getElementById('lang-label').textContent = currentLang === 'en' ? '中' : 'EN';
           updatePageTexts();
         }
 
-        // 错误处理
-         function showError(error) {
-           const overlay = document.getElementById('error-overlay');
-           const title = document.getElementById('error-title');
-           const message = document.getElementById('error-message');
-           const suggestion = document.getElementById('error-suggestion');
-           
-           let errorType = 'network';
-           const errStr = (error && (error.message || error.type || String(error))) || '';
-           
-            if (errStr.includes('CORS') || errStr.includes('cors') || errStr.includes('cross-origin')) {
-              errorType = 'cors';
-            } else if (errStr.includes('AUTH') || errStr.includes('401') || errStr.includes('Unauthorized')) {
-              errorType = 'auth';
-            } else if (errStr.includes('404') || errStr.includes('notFound') || errStr.includes('Not Found')) {
-              errorType = 'notFound';
-            } else if (errStr.includes('format') || errStr.includes('FORMAT') || errStr.includes('MEDIA_ERR_SRC_NOT_SUPPORTED') || errStr.includes('DEMUX')) {
-              errorType = 'format';
-            }
+        function showError(error) {
+          const overlay = document.getElementById('error-overlay');
+          const title = document.getElementById('error-title');
+          const message = document.getElementById('error-message');
+          const suggestion = document.getElementById('error-suggestion');
           
-           const errorInfo = {
-             cors: {
-               title: t('error_cors'),
-               message: t('error_cors'),
-               suggestion: t('error_proxy_hint')
-             },
-             auth: {
-               title: t('error_auth'),
-               message: t('error_auth'),
-               suggestion: t('error_auth_hint')
-             },
-             notFound: {
+          let errorType = 'network';
+          const errStr = (error && (error.message || error.type || String(error))) || '';
+          
+          if (errStr.includes('CORS') || errStr.includes('cors') || errStr.includes('cross-origin')) {
+            errorType = 'cors';
+          } else if (errStr.includes('AUTH') || errStr.includes('401') || errStr.includes('Unauthorized')) {
+            errorType = 'auth';
+          } else if (errStr.includes('404') || errStr.includes('notFound') || errStr.includes('Not Found')) {
+            errorType = 'notFound';
+          } else if (errStr.includes('format') || errStr.includes('FORMAT') || errStr.includes('MEDIA_ERR_SRC_NOT_SUPPORTED') || errStr.includes('DEMUX')) {
+            errorType = 'format';
+          }
+          
+          const errorInfo = {
+            cors: {
+              title: t('error_cors'),
+              message: t('error_cors'),
+              suggestion: t('error_proxy_hint')
+            },
+            auth: {
+              title: t('error_auth'),
+              message: t('error_auth'),
+              suggestion: t('error_auth_hint')
+            },
+            notFound: {
               title: t('error_notFound'),
               message: t('error_notFound'),
               suggestion: t('error_url_hint')
@@ -693,7 +615,6 @@
           overlay.classList.add('hidden');
         }
 
-        // 显示欢迎占位提示（更新文本内容）
         function showWelcomePlaceholder() {
           const placeholder = document.getElementById('welcome-placeholder');
           if (placeholder) {
@@ -710,7 +631,6 @@
           if (url) {
             initializePlayer(url);
           } else {
-            // 重新创建欢迎占位符
             const container = document.getElementById('player-container');
             container.innerHTML = `
               <div id="welcome-placeholder" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#000;color:#fff;">
@@ -727,22 +647,18 @@
             return cleanUrl.endsWith('.m3u8');
         }
 
-        // 核心函数：根据资源类型构建/重建 ArtPlayer 实例
         function initializePlayer(targetUrl) {
             if (art) { art.destroy(); }
             if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
 
-            // 移除欢迎占位符
             const placeholder = document.getElementById('welcome-placeholder');
             if (placeholder) { placeholder.remove(); }
 
             hideError();
 
             const isProxyEnabled = document.getElementById('use-proxy').checked;
-
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const themeColor = currentTheme === 'dark' ? '#3b82f6' : '#2563eb';
-
             const needCustomType = isM3U8(targetUrl);
 
             const artOptions = {
@@ -801,37 +717,35 @@
 
             art = new Artplayer(artOptions);
 
-            // 监听播放器事件
-             art.on('video:playing', () => {
-                 hideError();
-             });
+            art.on('video:playing', () => {
+                hideError();
+            });
 
-             art.on('video:canplay', () => {
-                 hideError();
-             });
+            art.on('video:canplay', () => {
+                hideError();
+            });
 
-             art.on('ready', () => {
-                 hideError();
-             });
+            art.on('ready', () => {
+                hideError();
+            });
 
-             art.on('video:error', (error) => {
-                 const video = art.video;
-                 if (video && video.error) {
-                     const code = video.error.code;
-                     if (code === 4) {
-                         showError({ message: 'FORMAT MEDIA_ERR_SRC_NOT_SUPPORTED' });
-                     } else if (code === 2) {
-                         showError({ message: 'NETWORK 404' });
-                     } else {
-                         showError(error);
-                     }
-                 } else {
-                     showError(error);
-                 }
-             });
+            art.on('video:error', (error) => {
+                const video = art.video;
+                if (video && video.error) {
+                    const code = video.error.code;
+                    if (code === 4) {
+                        showError({ message: 'FORMAT MEDIA_ERR_SRC_NOT_SUPPORTED' });
+                    } else if (code === 2) {
+                        showError({ message: 'NETWORK 404' });
+                    } else {
+                        showError(error);
+                    }
+                } else {
+                    showError(error);
+                }
+            });
         }
 
-        // 按钮触发入口
         function loadVideo() {
             const urlInput = document.getElementById('video-url').value.trim();
             if (!urlInput) {
@@ -842,18 +756,16 @@
                 alert(t('error_invalid_url'));
                 return;
             }
-
             initializePlayer(urlInput);
             commitUrlToHistory(urlInput);
         }
 
-        // LocalStorage 历史记录管道
         function commitUrlToHistory(url) {
             let list = [];
             try { list = JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; } catch(e) { list = []; }
-            list = list.filter(item => item !== url); // 深度去重
-            list.unshift(url); // 推入顶层
-            if (list.length > 5) list.pop(); // 节制长度为5条
+            list = list.filter(item => item !== url);
+            list.unshift(url);
+            if (list.length > 5) list.pop();
             localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
             refreshHistoryList();
         }

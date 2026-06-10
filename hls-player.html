@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Online URL Player - Play M3U8, MP4, HLS, DASH, WebM Streams</title>
-    <meta name="description" content="A free web tool to play and test video URLs online. Supports M3U8, MP4, HLS, DASH, FLV, and WebM streams. Paste your link and play instantly, no registration required.">
+    <title>Online HLS Player - Play HLS Live Streams Online</title>
+    <meta name="description" content="Free online HLS player. Play and test HLS live streams and on-demand video instantly. Paste your HLS URL and watch streams directly in your browser. No registration required.">
 
-    <meta property="og:title" content="Online Video Player from URL - Free Link Stream Tester">
-    <meta property="og:description" content="Stream and test video URLs instantly including MP4, M3U8, and HLS live links. 100% client-side, no registration required.">
+    <meta property="og:title" content="Online HLS Player - Free Live Stream Tester">
+    <meta property="og:description" content="Play and test HLS live streams and on-demand video online. Supports adaptive bitrate streaming. 100% client-side, no registration required.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://onlineurlplayer.com">
+    <meta property="og:url" content="https://onlineurlplayer.com/hls-player">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "Online URL Player",
-      "url": "https://onlineurlplayer.com",
-      "description": "A free web tool to play and test video URLs online. Supports M3U8, MP4, HLS, DASH, FLV, and WebM streams.",
+      "name": "Online HLS Player",
+      "url": "https://onlineurlplayer.com/hls-player",
+      "description": "Free online HLS player. Play and test HLS live streams and on-demand video instantly. Supports adaptive bitrate streaming.",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires HTML5 support.",
@@ -28,61 +28,12 @@
         "priceCurrency": "USD"
       },
       "featureList": [
-        "Play M3U8/HLS streams",
-        "Play MP4 videos",
-        "Play WebM videos",
-        "Play DASH streams",
+        "Play HLS live streams",
+        "Play M3U8 on-demand video",
+        "Adaptive bitrate streaming support",
+        "Stream quality testing",
         "CORS proxy support",
         "No registration required"
-      ]
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "How do I use this online video player from URL?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Simply paste your direct video link (URL) into the input field above and click the 'Play Now' button. Our player instantly detects the container format and loads your media stream within milliseconds. No registration or software downloads required."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Does this player support M3U8 player online and HLS live streams testing?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Yes, absolutely. This link player natively integrates streaming support for M3U8, HLS live broadcasts, and standard MP4/WebM resources. It serves as a professional, lightweight stream testing tool tailored for developers and video engineers globally."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Why does my M3U8 or video link fail to play?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "The most common reason is CORS (Cross-Origin Resource Sharing) restrictions. Video servers often block direct playback from other websites. To fix this, check the 'Enable Stream Proxy' option below the input field. This routes the video through our proxy server, bypassing CORS limitations."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is HLS and M3U8 video streaming?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "HLS (HTTP Live Streaming) is a protocol developed by Apple for streaming video content over the internet. M3U8 is the file format used for HLS playlists - it's a text file that contains URLs of video segments. HLS is widely used for live streaming and on-demand video because it adapts to different network conditions."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "Is it safe to paste and play private links on this website?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Your data privacy is completely guaranteed. This application functions 100% on the client-side. The URLs you paste are evaluated and resolved entirely inside your local browser and are never transmitted to any external backend server or database."
-          }
-        }
       ]
     }
     </script>
@@ -316,10 +267,10 @@
 
         <header class="text-center mb-8">
             <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3" data-i18n="hero_title">
-                Play Video from URL Online
+                Online HLS Player
             </h1>
             <p class="text-base text-slate-500 max-w-xl mx-auto" data-i18n="hero_subtitle">
-                Fast, free, and web-based video player from link. Perfect for testing streams and instant playback.
+                Play and test HLS live streams and on-demand video online. Perfect for stream testing and quality verification.
             </p>
         </header>
 
@@ -385,6 +336,17 @@
             </div>
         </div>
 
+        <section class="mb-12">
+            <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+                <h2 class="text-xl font-bold text-slate-900 mb-4" data-i18n="hls_intro_title">What is HLS Streaming?</h2>
+                <div class="text-sm text-slate-600 leading-relaxed space-y-3">
+                    <p data-i18n="hls_intro_p1">HLS (HTTP Live Streaming) is an adaptive bitrate streaming protocol developed by Apple. It works by breaking the overall video stream into a sequence of small HTTP-based file downloads, each containing a short segment of the content. This allows the video player to seamlessly switch between different quality levels based on the viewer's network conditions.</p>
+                    <p data-i18n="hls_intro_p2">The protocol uses M3U8 playlist files to organize video segments. A master playlist contains references to multiple quality variants, while media playlists point to the actual video chunks. This architecture enables adaptive bitrate streaming, where the player automatically selects the best quality that the viewer's bandwidth can support, ensuring smooth playback without buffering.</p>
+                    <p data-i18n="hls_intro_p3">HLS has become the industry standard for live streaming and video-on-demand (VOD) delivery. Its key advantages include wide device compatibility (supported on iOS, Android, desktop browsers, and smart TVs), firewall-friendly HTTP delivery, built-in support for DRM (Digital Rights Management), and excellent scalability through standard CDN infrastructure. Major platforms like YouTube, Twitch, and Netflix use HLS as their primary streaming protocol.</p>
+                </div>
+            </div>
+        </section>
+
         <section id="faq" class="border-t border-slate-200 pt-10 scroll-mt-6">
             <h2 class="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight text-center sm:text-left" data-i18n="faq_title">Frequently Asked Questions</h2>
             <div class="grid gap-4">
@@ -440,8 +402,8 @@
             nav_safe: 'Client-Side Safe',
 
             // 主标题
-            hero_title: 'Play Video from URL Online',
-            hero_subtitle: 'Fast, free, and web-based video player from link. Perfect for testing streams and instant playback.',
+            hero_title: 'Online HLS Player',
+            hero_subtitle: 'Play and test HLS live streams and on-demand video online. Perfect for stream testing and quality verification.',
 
             // 输入区域
             input_placeholder: 'Paste video URL here (e.g., https://example.com/movie.mp4 or .m3u8)',
@@ -455,6 +417,12 @@
             // 欢迎占位符
             placeholder_main: 'Paste a video URL to start playing',
             placeholder_sub: 'Supports MP4, M3U8, WebM formats',
+
+            // HLS 介绍
+            hls_intro_title: 'What is HLS Streaming?',
+            hls_intro_p1: 'HLS (HTTP Live Streaming) is an adaptive bitrate streaming protocol developed by Apple. It works by breaking the overall video stream into a sequence of small HTTP-based file downloads, each containing a short segment of the content. This allows the video player to seamlessly switch between different quality levels based on the viewer\'s network conditions.',
+            hls_intro_p2: 'The protocol uses M3U8 playlist files to organize video segments. A master playlist contains references to multiple quality variants, while media playlists point to the actual video chunks. This architecture enables adaptive bitrate streaming, where the player automatically selects the best quality that the viewer\'s bandwidth can support, ensuring smooth playback without buffering.',
+            hls_intro_p3: 'HLS has become the industry standard for live streaming and video-on-demand (VOD) delivery. Its key advantages include wide device compatibility (supported on iOS, Android, desktop browsers, and smart TVs), firewall-friendly HTTP delivery, built-in support for DRM (Digital Rights Management), and excellent scalability through standard CDN infrastructure. Major platforms like YouTube, Twitch, and Netflix use HLS as their primary streaming protocol.',
 
             // FAQ
             faq_title: 'Frequently Asked Questions',
@@ -490,8 +458,8 @@
             nav_safe: '客户端安全',
 
             // 主标题
-            hero_title: '在线视频播放器',
-            hero_subtitle: '快速、免费、基于网页的视频链接播放器。适合测试流媒体和即时播放。',
+            hero_title: '在线 HLS 播放器',
+            hero_subtitle: '在线播放和测试 HLS 直播流和点播视频。适合流媒体测试和质量验证。',
 
             // 输入区域
             input_placeholder: '粘贴视频链接（如 https://example.com/movie.mp4 或 .m3u8）',
@@ -505,6 +473,12 @@
             // 欢迎占位符
             placeholder_main: '粘贴视频链接开始播放',
             placeholder_sub: '支持 MP4、M3U8、WebM 格式',
+
+            // HLS 介绍
+            hls_intro_title: '什么是 HLS 流媒体？',
+            hls_intro_p1: 'HLS（HTTP Live Streaming）是 Apple 开发的自适应比特率流媒体协议。它通过将视频流分解为一系列基于 HTTP 的小文件下载来工作，每个文件包含一小段内容。这使得视频播放器可以根据观众的网络条件无缝切换不同的画质级别。',
+            hls_intro_p2: '该协议使用 M3U8 播放列表文件来组织视频片段。主播放列表包含多个画质变体的引用，而媒体播放列表则指向实际的视频块。这种架构实现了自适应比特率流媒体，播放器会自动选择观众带宽所能支持的最佳画质，确保流畅播放无缓冲。',
+            hls_intro_p3: 'HLS 已成为直播和视频点播（VOD）传输的行业标准。其主要优势包括广泛的设备兼容性（支持 iOS、Android、桌面浏览器和智能电视）、防火墙友好的 HTTP 传输、内置的 DRM（数字版权管理）支持，以及通过标准 CDN 基础设施实现的出色可扩展性。YouTube、Twitch 和 Netflix 等主要平台都将 HLS 作为其主要流媒体协议。',
 
             // FAQ
             faq_title: '常见问题',
