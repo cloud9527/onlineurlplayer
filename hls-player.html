@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Online HLS Player - Play HLS Live Streams Online</title>
-    <meta name="description" content="Free online HLS player. Play and test HLS live streams and on-demand video instantly. Paste your HLS URL and watch streams directly in your browser. No registration required.">
+    <meta name="description" content="Free online HLS player. Play and test HLS live streams and on-demand video instantly. Paste your HLS URL and watch in your browser. No registration.">
 
     <meta property="og:title" content="Online HLS Player - Free Live Stream Tester">
     <meta property="og:description" content="Play and test HLS live streams and on-demand video online. Supports adaptive bitrate streaming. 100% client-side, no registration required.">
@@ -37,6 +37,17 @@
       ]
     }
     </script>
+
+    <link rel="canonical" href="https://onlineurlplayer.com/hls-player">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <meta property="og:image" content="https://onlineurlplayer.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Online HLS Player - Free Live Stream Tester">
+    <meta name="twitter:description" content="Play and test HLS live streams and on-demand video online. Supports adaptive bitrate streaming. 100% client-side, no registration required.">
+    <meta name="twitter:image" content="https://onlineurlplayer.com/og-image.png">
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -344,6 +355,24 @@
                     <p data-i18n="hls_intro_p2">The protocol uses M3U8 playlist files to organize video segments. A master playlist contains references to multiple quality variants, while media playlists point to the actual video chunks. This architecture enables adaptive bitrate streaming, where the player automatically selects the best quality that the viewer's bandwidth can support, ensuring smooth playback without buffering.</p>
                     <p data-i18n="hls_intro_p3">HLS has become the industry standard for live streaming and video-on-demand (VOD) delivery. Its key advantages include wide device compatibility (supported on iOS, Android, desktop browsers, and smart TVs), firewall-friendly HTTP delivery, built-in support for DRM (Digital Rights Management), and excellent scalability through standard CDN infrastructure. Major platforms like YouTube, Twitch, and Netflix use HLS as their primary streaming protocol.</p>
                 </div>
+            </div>
+        </section>
+
+        <section class="border-t border-slate-200 pt-10 mt-2">
+            <h2 class="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight">More Online Players</h2>
+            <div class="grid sm:grid-cols-3 gap-4">
+                <a href="/" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors">
+                    <h3 class="text-base font-bold text-slate-900 mb-1">Online URL Player</h3>
+                    <p class="text-sm text-slate-600">The all-in-one online URL player to play any video from a URL.</p>
+                </a>
+                <a href="/m3u8-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors">
+                    <h3 class="text-base font-bold text-slate-900 mb-1">Online M3U8 Player</h3>
+                    <p class="text-sm text-slate-600">Play and test M3U8/HLS live and on-demand streams online.</p>
+                </a>
+                <a href="/mp4-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors">
+                    <h3 class="text-base font-bold text-slate-900 mb-1">Online MP4 Player</h3>
+                    <p class="text-sm text-slate-600">Play MP4 video URLs instantly in your browser.</p>
+                </a>
             </div>
         </section>
 

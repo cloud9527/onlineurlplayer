@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Online URL Player - Play M3U8, MP4, HLS, DASH, WebM Streams</title>
-    <meta name="description" content="A free web tool to play and test video URLs online. Supports M3U8, MP4, HLS, DASH, FLV, and WebM streams. Paste your link and play instantly, no registration required.">
+    <meta name="description" content="Free online URL player to play any video from a URL. Test M3U8, HLS, MP4, DASH and WebM streams instantly in your browser - no registration, 100% client-side.">
 
-    <meta property="og:title" content="Online Video Player from URL - Free Link Stream Tester">
-    <meta property="og:description" content="Stream and test video URLs instantly including MP4, M3U8, and HLS live links. 100% client-side, no registration required.">
+    <meta property="og:title" content="Online URL Player - Play Any Video from a URL">
+    <meta property="og:description" content="Free online URL player to play any video from a URL. Test M3U8, HLS, MP4, DASH and WebM streams instantly - 100% client-side, no registration.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://onlineurlplayer.com">
+    <meta property="og:url" content="https://onlineurlplayer.com/">
 
     <script type="application/ld+json">
     {
@@ -18,7 +18,7 @@
       "@type": "WebApplication",
       "name": "Online URL Player",
       "url": "https://onlineurlplayer.com",
-      "description": "A free web tool to play and test video URLs online. Supports M3U8, MP4, HLS, DASH, FLV, and WebM streams.",
+      "description": "Free online URL player to play any video from a URL. Supports M3U8, MP4, HLS, DASH, FLV, and WebM streams.",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires HTML5 support.",
@@ -73,6 +73,38 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "HLS (HTTP Live Streaming) is a protocol developed by Apple for streaming video content over the internet. M3U8 is the file format used for HLS playlists - it's a text file that contains URLs of video segments. HLS is widely used for live streaming and on-demand video because it adapts to different network conditions."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use this online URL player on mobile?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The online URL player is fully responsive and works in mobile browsers on iOS and Android. The interface adapts to small screens, and the player supports touch controls, picture-in-picture, and fullscreen."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does the online URL player keep logs of the videos I play?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The application runs 100% on the client side. URLs you paste are resolved inside your own browser and are never sent to an external server or database, except when you explicitly enable the Stream Proxy to bypass CORS."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What video URL formats does the player support besides M3U8?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Besides M3U8/HLS, the online URL player supports MP4, DASH, WebM and FLV links. You can use it as an online MP4 player, an HLS player, or a general URL player for any compatible stream."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I play a private or password-protected URL?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "If the source requires a token or login (HTTP 401), the link cannot be played directly for security reasons. For CORS-protected but public links, enable Stream Proxy. For authenticated sources, the online URL player cannot bypass the login."
           }
         },
         {
@@ -185,7 +217,6 @@
         [data-theme="dark"] .bg-slate-100 {
           background-color: #1e293b;
         }
-        }
 
         .accent-bg {
           background-color: var(--accent);
@@ -284,6 +315,18 @@
           display: none;
         }
     </style>
+
+    <link rel="canonical" href="https://onlineurlplayer.com/">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="apple-touch-icon" href="/favicon.svg">
+    <meta property="og:image" content="https://onlineurlplayer.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Online URL Player - Play Any Video from a URL">
+    <meta name="twitter:description" content="Free online URL player to play any video from a URL. Test M3U8, HLS, MP4, DASH and WebM streams instantly - 100% client-side.">
+    <meta name="twitter:image" content="https://onlineurlplayer.com/og-image.png">
+
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans min-h-screen antialiased flex flex-col">
 
@@ -316,10 +359,10 @@
 
         <header class="text-center mb-8">
             <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3" data-i18n="hero_title">
-                Play Video from URL Online
+                Online URL Player - Play Any Video from a URL
             </h1>
             <p class="text-base text-slate-500 max-w-xl mx-auto" data-i18n="hero_subtitle">
-                Fast, free, and web-based video player from link. Perfect for testing streams and instant playback.
+                A fast, free online URL player to play any video from a URL. Perfect for testing M3U8, HLS and MP4 streams with instant playback.
             </p>
         </header>
 
@@ -374,7 +417,7 @@
         </div>
 
         <div id="history-box" class="bg-white rounded-xl border border-slate-200 p-5 mb-12 shadow-sm hidden">
-            <h3 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3" data-i18n="history_title">Recent Links</h3>
+            <h2 class="text-lg font-bold text-slate-900 mb-3" data-i18n="history_title">Recent Links</h2>
             <div id="history-list" class="flex flex-col gap-2.5"></div>
         </div>
 
@@ -384,6 +427,96 @@
                 Ad Slot Placeholder (Below Player)
             </div>
         </div>
+
+        <section class="border-t border-slate-200 pt-10 mt-2" data-i18n="sec_what">
+            <h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">What Is an Online URL Player?</h2>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                An <strong>online URL player</strong> is a web tool that lets you play a video from a URL without downloading any software. Instead of saving a file first, you simply paste a direct video link and the online URL player streams it straight inside your browser. Whether the source is an MP4 file, an M3U8/HLS live stream, a DASH manifest, or a WebM clip, a good online URL player detects the container automatically and starts playback within seconds. This makes it the fastest way to preview, test, and verify any remote video link on the web.
+            </p>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                The phrase "online URL player" describes exactly what it does: it is <em>online</em> (no install), driven by a <em>URL</em>, and it is a <em>player</em> that can <em>play</em> almost anything you point it at. Our tool is built so you can use the online URL player to play public streams, private test endpoints, and CDN files with equal ease.
+            </p>
+        </section>
+
+        <section class="border-t border-slate-200 pt-10" data-i18n="sec_how">
+            <h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">How to Play a Video from a URL in 3 Steps</h2>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">Playing media with our online URL player takes less than a minute:</p>
+            <ol class="list-decimal list-inside text-sm text-slate-600 leading-relaxed mb-4 space-y-2">
+                <li>Copy the direct link to your video (for example <code class="bg-slate-100 px-1 rounded">https://example.com/movie.mp4</code> or a <code class="bg-slate-100 px-1 rounded">.m3u8</code> playlist).</li>
+                <li>Paste the URL into the input box at the top of this page.</li>
+                <li>Click <strong>Play Now</strong>. The online URL player recognizes the format, loads the stream, and begins playback instantly.</li>
+            </ol>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                If a link fails because of cross-origin (CORS) or anti-leech protection, tick <strong>Enable Stream Proxy</strong> and the online URL player will fetch the media through our proxy so it can play. This is the easiest way to play a video from a URL that is normally blocked for external sites.
+            </p>
+        </section>
+
+        <section class="border-t border-slate-200 pt-10" data-i18n="sec_formats">
+            <h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">Supported Formats</h2>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">Our online URL player supports the most common streaming and file formats used on the web:</p>
+            <ul class="list-disc list-inside text-sm text-slate-600 leading-relaxed mb-4 space-y-2">
+                <li><strong>MP4</strong> - the universal video file; plays natively in every modern browser.</li>
+                <li><strong>M3U8 / HLS</strong> - Apple's HTTP Live Streaming playlists for live and on-demand video, with automatic adaptive quality.</li>
+                <li><strong>DASH</strong> - MPEG-DASH adaptive streaming for large catalogs and live events.</li>
+                <li><strong>WebM</strong> - an open, efficient format ideal for fast web delivery.</li>
+                <li><strong>FLV</strong> - legacy Flash video containers, handled via the proxy when needed.</li>
+            </ul>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">No matter the format, this online URL player gives you a single place to play any URL you encounter.</p>
+        </section>
+
+        <section class="border-t border-slate-200 pt-10" data-i18n="sec_cases">
+            <h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">Use Cases for an Online URL Player</h2>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                Developers and video teams reach for an online URL player every day:
+            </p>
+            <ul class="list-disc list-inside text-sm text-slate-600 leading-relaxed mb-4 space-y-2">
+                <li><strong>Stream testing</strong> - confirm a new M3U8 or HLS endpoint actually plays before shipping it.</li>
+                <li><strong>IPTV and live source checks</strong> - validate live channel URLs and catch broken segments early.</li>
+                <li><strong>Pre-publish preview</strong> - make sure a CDN URL renders correctly on desktop and mobile.</li>
+                <li><strong>CORS troubleshooting</strong> - use proxy mode to see whether a link fails because of cross-origin blocks.</li>
+                <li><strong>Quick sharing</strong> - open any video URL in a clean, distraction-free player to show a colleague.</li>
+            </ul>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                An online URL player turns a bare link into watchable video in a single click, which is why it is a staple in every video engineer's toolkit.
+            </p>
+        </section>
+
+        <section class="border-t border-slate-200 pt-10" data-i18n="sec_why">
+            <h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">Why Choose This Online URL Player</h2>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                This online URL player is built to be fast, private, and free. It runs 100% on the client side, so the URLs you paste are resolved inside your own browser and are never uploaded to a server. There is no registration, no install, and no watermark. A built-in CORS proxy handles protected links, a history list keeps your recent URLs handy, and light or dark themes adapt to your preference. The mobile-responsive layout means the online URL player works just as well on a phone as on a desktop. This online URL player plays M3U8, MP4, HLS, DASH and WebM streams directly from any URL.
+            </p>
+        </section>
+
+        <section class="border-t border-slate-200 pt-10" data-i18n="sec_tips">
+            <h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">Troubleshooting and Tips</h2>
+            <ul class="list-disc list-inside text-sm text-slate-600 leading-relaxed mb-4 space-y-2">
+                <li><strong>Black screen or network error</strong> - the link may be down or behind a login. Re-check the URL.</li>
+                <li><strong>CORS / cross-origin error</strong> - enable Stream Proxy so the online URL player can bypass the restriction.</li>
+                <li><strong>401 Unauthorized</strong> - the source requires a token; such links cannot be played directly.</li>
+                <li><strong>Unsupported format</strong> - only MP4, M3U8/HLS, DASH, WebM and FLV are supported.</li>
+                <li><strong>Buffering</strong> - lower the quality or check your connection; live HLS adapts automatically.</li>
+            </ul>
+            <p class="text-sm text-slate-600 leading-relaxed mb-4">Keeping these tips in mind helps the online URL player deliver smooth playback for any URL.</p>
+        </section>
+
+        <section class="border-t border-slate-200 pt-10" data-i18n="sec_more">
+            <h2 class="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight">More Online Players</h2>
+            <div class="grid sm:grid-cols-3 gap-4">
+                <a href="/m3u8-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors">
+                    <h3 class="text-base font-bold text-slate-900 mb-1">Online M3U8 Player</h3>
+                    <p class="text-sm text-slate-600">Play and test M3U8/HLS live and on-demand streams online with our dedicated online URL player.</p>
+                </a>
+                <a href="/mp4-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors">
+                    <h3 class="text-base font-bold text-slate-900 mb-1">Online MP4 Player</h3>
+                    <p class="text-sm text-slate-600">Play MP4 video URLs instantly in your browser with this focused online URL player.</p>
+                </a>
+                <a href="/hls-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors">
+                    <h3 class="text-base font-bold text-slate-900 mb-1">Online HLS Player</h3>
+                    <p class="text-sm text-slate-600">Play HLS live streams and on-demand video online using the same reliable online URL player.</p>
+                </a>
+            </div>
+        </section>
 
         <section id="faq" class="border-t border-slate-200 pt-10 scroll-mt-6">
             <h2 class="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight text-center sm:text-left" data-i18n="faq_title">Frequently Asked Questions</h2>
@@ -407,6 +540,22 @@
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
                     <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq5_q">What is HLS and M3U8 video streaming?</h3>
                     <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq5_a">HLS (HTTP Live Streaming) is a protocol developed by Apple for streaming video content over the internet. M3U8 is the file format used for HLS playlists - it's a text file that contains URLs of video segments. HLS is widely used for live streaming and on-demand video because it adapts to different network conditions. Our player fully supports HLS/M3U8 streams with automatic quality switching.</p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
+                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq6_q">Can I use this online URL player on mobile?</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq6_a">Yes. The online URL player is fully responsive and works in mobile browsers on iOS and Android. The interface adapts to small screens, and the player supports touch controls, picture-in-picture, and fullscreen.</p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
+                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq7_q">Does the online URL player keep logs of the videos I play?</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq7_a">No. The application runs 100% on the client side. URLs you paste are resolved inside your own browser and are never sent to an external server or database, except when you explicitly enable the Stream Proxy to bypass CORS.</p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
+                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq8_q">What video URL formats does the player support besides M3U8?</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq8_a">Besides M3U8/HLS, the online URL player supports MP4, DASH, WebM and FLV links. You can use it as an online MP4 player, an HLS player, or a general URL player for any compatible stream.</p>
+                </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
+                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq9_q">How do I play a private or password-protected URL?</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq9_a">If the source requires a token or login (HTTP 401), the link cannot be played directly for security reasons. For CORS-protected but public links, enable Stream Proxy. For authenticated sources, the online URL player cannot bypass the login.</p>
                 </div>
             </div>
         </section>
@@ -440,8 +589,8 @@
             nav_safe: 'Client-Side Safe',
 
             // 主标题
-            hero_title: 'Play Video from URL Online',
-            hero_subtitle: 'Fast, free, and web-based video player from link. Perfect for testing streams and instant playback.',
+            hero_title: 'Online URL Player - Play Any Video from a URL',
+            hero_subtitle: 'A fast, free online URL player to play any video from a URL. Perfect for testing M3U8, HLS and MP4 streams with instant playback.',
 
             // 输入区域
             input_placeholder: 'Paste video URL here (e.g., https://example.com/movie.mp4 or .m3u8)',
@@ -490,8 +639,8 @@
             nav_safe: '客户端安全',
 
             // 主标题
-            hero_title: '在线视频播放器',
-            hero_subtitle: '快速、免费、基于网页的视频链接播放器。适合测试流媒体和即时播放。',
+            hero_title: '在线 URL 播放器 - 从任意链接播放视频',
+            hero_subtitle: '免费、快速的在线 URL 播放器，从任意链接播放视频。适合测试 M3U8、HLS 与 MP4 流媒体，即点即播。',
 
             // 输入区域
             input_placeholder: '粘贴视频链接（如 https://example.com/movie.mp4 或 .m3u8）',
@@ -518,6 +667,21 @@
             faq4_a: '最常见的原因是 CORS（跨域资源共享）限制。视频服务器通常会阻止其他网站的直接播放。要解决此问题，请勾选输入框下方的"启用流代理"选项。这会将视频通过我们的代理服务器转发，绕过 CORS 限制。注意：我们不会存储或记录任何视频内容。',
             faq5_q: '什么是 HLS 和 M3U8 视频流？',
             faq5_a: 'HLS（HTTP Live Streaming）是 Apple 开发的用于在互联网上传输视频内容的协议。M3U8 是用于 HLS 播放列表的文件格式 - 它是一个包含视频片段 URL 的文本文件。HLS 因其能自适应不同网络条件而被广泛用于直播和点播。我们的播放器完全支持 HLS/M3U8 流，并具有自动画质切换功能。',
+            faq6_q: '我可以在手机上使用这个在线 URL 播放器吗？',
+            faq6_a: '可以。在线 URL 播放器完全响应式，可在 iOS 和 Android 的移动浏览器中使用。界面会适配小屏幕，播放器支持触控、画中画和全屏。',
+            faq7_q: '在线 URL 播放器会记录我播放的视频吗？',
+            faq7_a: '不会。应用 100% 在客户端运行，你粘贴的链接只在自己的浏览器中解析，不会发送到外部服务器或数据库；只有当你主动启用流代理绕过 CORS 时才会经过代理。',
+            faq8_q: '除了 M3U8，播放器还支持哪些视频链接格式？',
+            faq8_a: '除了 M3U8/HLS，在线 URL 播放器还支持 MP4、DASH、WebM 和 FLV 链接。你可以把它当作在线 MP4 播放器、HLS 播放器，或用于任何兼容流的通用 URL 播放器。',
+            faq9_q: '如何播放私有或带密码的链接？',
+            faq9_a: '如果源站需要令牌或登录（HTTP 401），出于安全原因无法直接播放。对公开但受 CORS 保护的链接，可启用流代理；对需要鉴权的源，在线 URL 播放器无法绕过登录。',
+            sec_what: '<h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">什么是在线 URL 播放器？</h2><p class="text-sm text-slate-600 leading-relaxed mb-4"><strong>在线 URL 播放器</strong>是一种网页工具，无需下载任何软件，就能直接从链接播放视频。你不必先保存文件，只需粘贴视频直链，在线 URL 播放器就会在浏览器中直接串流播放。无论源是 MP4 文件、M3U8/HLS 直播流、DASH 清单还是 WebM 片段，好的在线 URL 播放器都能自动识别封装格式并在几秒内开始播放。这使它成为在网页上预览、测试和验证任何远程视频链接最快的方式。</p><p class="text-sm text-slate-600 leading-relaxed mb-4">「在线 URL 播放器」这个名称正好说明了它的作用：<em>在线</em>（免安装）、以 <em>URL</em>（网址）为输入、并且是一个能<em>播放</em>几乎所有内容的<em>播放器</em>。我们的工具让你可以用在线 URL 播放器轻松播放公开流、私有测试端点和 CDN 文件。</p>',
+            sec_how: '<h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">三步从 URL 播放视频</h2><p class="text-sm text-slate-600 leading-relaxed mb-4">用我们的在线 URL 播放器播放媒体不到一分钟：</p><ol class="list-decimal list-inside text-sm text-slate-600 leading-relaxed mb-4 space-y-2"><li>复制视频直链（例如 <code class="bg-slate-100 px-1 rounded">https://example.com/movie.mp4</code> 或 <code class="bg-slate-100 px-1 rounded">.m3u8</code> 播放列表）。</li><li>把链接粘贴到本页顶部的输入框。</li><li>点击<strong>立即播放</strong>。在线 URL 播放器会识别格式、加载流并立即开始播放。</li></ol><p class="text-sm text-slate-600 leading-relaxed mb-4">如果链接因跨域（CORS）或防盗链保护而失败，勾选<strong>启用流代理</strong>，在线 URL 播放器会通过我们的代理获取媒体从而正常播放。这是播放那些被外站屏蔽链接最简单的方法。</p>',
+            sec_formats: '<h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">支持的格式</h2><p class="text-sm text-slate-600 leading-relaxed mb-4">我们的在线 URL 播放器支持网页上最常用的流媒体和文件格式：</p><ul class="list-disc list-inside text-sm text-slate-600 leading-relaxed mb-4 space-y-2"><li><strong>MP4</strong> - 通用视频文件，在所有现代浏览器中原生播放。</li><li><strong>M3U8 / HLS</strong> - Apple 的 HTTP Live Streaming 播放列表，用于直播与点播，自动自适应画质。</li><li><strong>DASH</strong> - 用于大型目录和直播活动的 MPEG-DASH 自适应流。</li><li><strong>WebM</strong> - 开放高效的格式，适合快速网页分发。</li><li><strong>FLV</strong> - 传统 Flash 视频封装，必要时通过代理处理。</li></ul><p class="text-sm text-slate-600 leading-relaxed mb-4">无论什么格式，这个在线 URL 播放器都为你提供播放任意链接的统一入口。</p>',
+            sec_cases: '<h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">在线 URL 播放器的使用场景</h2><p class="text-sm text-slate-600 leading-relaxed mb-4">开发者和视频团队每天都会用到在线 URL 播放器：</p><ul class="list-disc list-inside text-sm text-slate-600 leading-relaxed mb-4 space-y-2"><li><strong>流媒体测试</strong> - 在上线前确认新的 M3U8 或 HLS 端点确实能播放。</li><li><strong>IPTV 与直播源检查</strong> - 验证直播频道 URL，及早发现失效分片。</li><li><strong>发布前预览</strong> - 确保 CDN 链接在桌面和移动端都能正常渲染。</li><li><strong>CORS 排查</strong> - 用代理模式判断链接失败是否因跨域限制。</li><li><strong>快速分享</strong> - 在干净无干扰的播放器里打开任意视频链接给同事看。</li></ul><p class="text-sm text-slate-600 leading-relaxed mb-4">在线 URL 播放器一键把裸链接变成可观看的视频，这就是它成为每位视频工程师常备工具的原因。</p>',
+            sec_why: '<h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">为什么选择这个在线 URL 播放器</h2><p class="text-sm text-slate-600 leading-relaxed mb-4">这个在线 URL 播放器为快速、私密和免费而生。它 100% 在客户端运行，你粘贴的链接只在自己的浏览器中解析，绝不上传到任何服务器。无需注册、无需安装、无水印。内置 CORS 代理可处理受保护链接，历史列表保留你最近的链接，明暗主题随你喜好切换。响应式布局让在线 URL 播放器在手机和桌面上都同样好用。这个在线 URL 播放器可直接从任意链接播放 M3U8、MP4、HLS、DASH 和 WebM 流。</p>',
+            sec_tips: '<h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">故障排查与技巧</h2><ul class="list-disc list-inside text-sm text-slate-600 leading-relaxed mb-4 space-y-2"><li><strong>黑屏或网络错误</strong> - 链接可能已失效或需要登录，请重新检查 URL。</li><li><strong>CORS / 跨域错误</strong> - 启用流代理，让在线 URL 播放器绕过该限制。</li><li><strong>401 未授权</strong> - 源站需要令牌，此类链接无法直接播放。</li><li><strong>不支持的格式</strong> - 仅支持 MP4、M3U8/HLS、DASH、WebM 和 FLV。</li><li><strong>卡顿缓冲</strong> - 降低画质或检查网络；HLS 直播会自动自适应。</li></ul><p class="text-sm text-slate-600 leading-relaxed mb-4">记住这些技巧，能让在线 URL 播放器为任意链接提供流畅播放。</p>',
+            sec_more: '<h2 class="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight">更多在线播放器</h2><div class="grid sm:grid-cols-3 gap-4"><a href="/m3u8-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors"><h3 class="text-base font-bold text-slate-900 mb-1">在线 M3U8 播放器</h3><p class="text-sm text-slate-600">用我们专用的在线 URL 播放器在线播放并测试 M3U8/HLS 直播与点播流。</p></a><a href="/mp4-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors"><h3 class="text-base font-bold text-slate-900 mb-1">在线 MP4 播放器</h3><p class="text-sm text-slate-600">用这个专注的在线 URL 播放器在浏览器中即时播放 MP4 视频链接。</p></a><a href="/hls-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors"><h3 class="text-base font-bold text-slate-900 mb-1">在线 HLS 播放器</h3><p class="text-sm text-slate-600">使用同样可靠的在线 URL 播放器在线播放 HLS 直播流与点播视频。</p></a></div>',
 
             // 错误提示
             error_cors: '此视频链接存在跨域限制',
@@ -562,10 +726,14 @@
         function updatePageTexts() {
           document.querySelectorAll('[data-i18n]').forEach(el => {
             const key = el.getAttribute('data-i18n');
+            // 首次运行时缓存服务端直出的(英文)原文，供无对应翻译时还原
+            if (el.dataset.orig === undefined) { el.dataset.orig = el.innerHTML; }
+            const val = t(key);
+            const out = (val === key) ? el.dataset.orig : val;
             if (el.tagName === 'INPUT') {
-              el.placeholder = t(key);
+              el.placeholder = out;
             } else {
-              el.textContent = t(key);
+              el.innerHTML = out;
             }
           });
         }
