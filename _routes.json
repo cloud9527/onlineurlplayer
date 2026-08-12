@@ -6,6 +6,7 @@
     { "handlers": [], "page": "/index.html" },
     { "include": "/m3u8-player", "handlers": [], "page": "/m3u8-player.html" },
     { "include": "/mp4-player", "handlers": [], "page": "/mp4-player.html" },
-    { "include": "/hls-player", "handlers": [], "page": "/hls-player.html" }
+    { "include": "/hls-player", "handlers": [], "page": "/hls-player.html" },
+    { "include": "/dash-player", "handlers": [], "page": "/dash-player.html" }
   ]
 }

@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Online M3U8 Player - Play M3U8/HLS Streams Online</title>
-    <meta name="description" content="Free online M3U8 player. Play and test M3U8/HLS video streams instantly. Paste your M3U8 link and play live or on-demand streams. No registration required.">
+    <title>Online DASH Player - Play DASH/MPD Streams Online</title>
+    <meta name="description" content="Free online DASH player. Play and test MPEG-DASH (MPD) video streams instantly in your browser. Supports adaptive bitrate and live streaming. No registration required.">
 
-    <meta property="og:title" content="Online M3U8 Player - Free HLS Stream Tester">
-    <meta property="og:description" content="Play and test M3U8/HLS video streams online. Supports live broadcasts and on-demand content. 100% client-side, no registration required.">
+    <meta property="og:title" content="Online DASH Player - Free MPD Stream Tester">
+    <meta property="og:description" content="Play and test MPEG-DASH (MPD) video streams online. Supports adaptive bitrate and live content. 100% client-side, no registration required.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://onlineurlplayer.com/m3u8-player">
+    <meta property="og:url" content="https://onlineurlplayer.com/dash-player">
 
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "Online M3U8 Player",
-      "url": "https://onlineurlplayer.com/m3u8-player",
-      "description": "Free online M3U8/HLS player. Play and test M3U8 video streams, HLS live broadcasts, and on-demand content instantly in your browser.",
+      "name": "Online DASH Player",
+      "url": "https://onlineurlplayer.com/dash-player",
+      "description": "Free online MPEG-DASH player. Play and test DASH/MPD video streams, adaptive bitrate content, and live DASH streams instantly in your browser.",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires HTML5 support.",
@@ -28,28 +28,98 @@
         "priceCurrency": "USD"
       },
       "featureList": [
-        "Play M3U8/HLS streams online",
-        "HLS live stream testing",
-        "Adaptive bitrate streaming",
+        "Play DASH/MPD streams online",
+        "Adaptive bitrate streaming (ABR)",
+        "Live DASH streaming support",
         "CORS proxy support",
         "No registration required"
       ]
     }
     </script>
 
-    <link rel="canonical" href="https://onlineurlplayer.com/m3u8-player">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://onlineurlplayer.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Online DASH Player",
+          "item": "https://onlineurlplayer.com/dash-player"
+        }
+      ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I use this online DASH player?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Paste your MPD link into the input field above and click the 'Play Now' button. The player uses dash.js to parse the MPD manifest and play the stream directly in your browser. No registration or software downloads required."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this player support DASH live streams and adaptive bitrate?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. This DASH player natively supports live MPD streams, VOD content, and adaptive bitrate (ABR). It automatically selects the optimal quality for your network conditions and lets you switch quality levels manually through the player settings."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it safe to paste and play private DASH links on this website?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your data privacy is completely guaranteed. This application functions 100% on the client-side. The MPD URLs you paste are parsed entirely inside your local browser and are never transmitted to any external backend server or database."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does my MPD link fail to play?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The most common reason is CORS (Cross-Origin Resource Sharing) restrictions. DASH servers often block direct playback from other websites. To fix this, check the 'Enable Stream Proxy' option below the input field. This routes requests through our proxy server, bypassing CORS limitations. Note: We do not store or log any video content."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between DASH and HLS (M3U8)?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Both are adaptive streaming protocols. HLS (M3U8) was created by Apple and uses a playlist format; DASH (MPD) is an ISO/IEC international standard using an XML-based manifest. DASH is codec-flexible and widely used by YouTube and Netflix, while HLS has broader native device support on iOS and Safari."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <link rel="canonical" href="https://onlineurlplayer.com/dash-player">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="apple-touch-icon" href="/favicon.svg">
     <meta property="og:image" content="https://onlineurlplayer.com/og-image.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Online M3U8 Player - Free HLS Stream Tester">
-    <meta name="twitter:description" content="Play and test M3U8/HLS video streams online. Supports live broadcasts and on-demand content. 100% client-side, no registration required.">
+    <meta name="twitter:title" content="Online DASH Player - Free MPD Stream Tester">
+    <meta name="twitter:description" content="Play and test MPEG-DASH (MPD) video streams online. Supports adaptive bitrate and live content. 100% client-side, no registration required.">
     <meta name="twitter:image" content="https://onlineurlplayer.com/og-image.png">
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/dashjs@latest/dist/dash.all.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/artplayer/dist/artplayer.js"></script>
 
     <style>
@@ -146,7 +216,6 @@
         [data-theme="dark"] .bg-slate-100 {
           background-color: #1e293b;
         }
-        }
 
         .accent-bg {
           background-color: var(--accent);
@@ -194,22 +263,22 @@
           .art-control {
             min-height: 44px;
           }
-          
+
           .art-control-volume {
             display: none;
           }
-          
+
           .history-item {
             padding: 12px;
             border-radius: 8px;
             margin-bottom: 8px;
           }
-          
+
           /* 移动端输入区域垂直排列 */
           .input-group {
             flex-direction: column;
           }
-          
+
           .input-group button {
             width: 100%;
           }
@@ -250,7 +319,7 @@
 
     <nav class="bg-white border-b border-slate-200">
         <div class="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between">
-            <span class="font-bold text-xl tracking-tight text-blue-600">OnlineURLPlayer<span class="text-slate-400 text-xs font-normal ml-1">.com</span></span>
+            <a href="/" class="font-bold text-xl tracking-tight text-blue-600">OnlineURLPlayer<span class="text-slate-400 text-xs font-normal ml-1">.com</span></a>
             <div class="flex items-center gap-4 text-sm font-medium text-slate-600">
                 <a href="#faq" class="hover:text-blue-600 transition-colors" data-i18n="nav_faq">FAQ</a>
                 <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded-full font-semibold" data-i18n="nav_safe">Client-Side Safe</span>
@@ -277,10 +346,10 @@
 
         <header class="text-center mb-8">
             <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3" data-i18n="hero_title">
-                Online M3U8 Player
+                Online DASH Player
             </h1>
             <p class="text-base text-slate-500 max-w-xl mx-auto" data-i18n="hero_subtitle">
-                Play and test M3U8/HLS video streams online. Perfect for live broadcasts and on-demand content.
+                Play and test DASH/MPD video streams online. Supports adaptive bitrate streaming and live content.
             </p>
         </header>
 
@@ -289,7 +358,7 @@
                 <input type="url" id="video-url"
                        class="flex-grow border border-slate-300 rounded-lg px-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                        data-i18n="input_placeholder"
-                       placeholder="Paste M3U8 URL here (e.g., https://example.com/stream.m3u8)" required>
+                       placeholder="Paste MPD URL here (e.g., https://example.com/stream.mpd)" required>
                 <button id="btn-play"
                         class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg text-base cursor-pointer shadow-sm transition-all text-center whitespace-nowrap"
                         data-i18n="btn_play">
@@ -310,8 +379,8 @@
             <div id="player-container" class="aspect-video">
                 <div id="welcome-placeholder" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#000;color:#fff;">
                     <div style="font-size:48px;margin-bottom:16px;">🎬</div>
-                    <div style="font-size:18px;font-weight:600;margin-bottom:8px;" data-i18n="placeholder_main">Paste an M3U8 URL to start playing</div>
-                    <div style="font-size:14px;color:#94a3b8;" data-i18n="placeholder_sub">Supports M3U8/HLS live and on-demand streams</div>
+                    <div style="font-size:18px;font-weight:600;margin-bottom:8px;" data-i18n="placeholder_main">Paste an MPD URL to start playing</div>
+                    <div style="font-size:14px;color:#94a3b8;" data-i18n="placeholder_sub">Supports DASH/MPD live and on-demand streams</div>
                 </div>
             </div>
             <!-- 错误提示 -->
@@ -346,22 +415,22 @@
             </div>
         </div>
 
-        <section id="m3u8-intro" class="mb-12">
+        <section id="dash-intro" class="mb-12">
             <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-                <h2 class="text-xl font-bold text-slate-900 mb-3" data-i18n="intro_title">What is M3U8?</h2>
+                <h2 class="text-xl font-bold text-slate-900 mb-3" data-i18n="intro_title">What is DASH?</h2>
                 <p class="text-sm text-slate-600 leading-relaxed mb-3" data-i18n="intro_p1">
-                    M3U8 is a playlist file format used by HLS (HTTP Live Streaming), a protocol developed by Apple for delivering video content over the internet. An M3U8 file is a plain text file that contains URLs pointing to video segments, typically in .ts (Transport Stream) format. When you play an M3U8 link, the player reads the playlist and downloads the segments sequentially to provide smooth playback.
+                    DASH (Dynamic Adaptive Streaming over HTTP) is an international standard (ISO/IEC 23009-1) for streaming video over HTTP. It works by dividing video content into small segments and delivering them via a Media Presentation Description (MPD) file, an XML-based manifest that lists available resolutions, bitrates, and segment locations. The player reads the MPD, selects the best quality based on your bandwidth, and adapts dynamically as network conditions change.
                 </p>
-                <h3 class="text-base font-semibold text-slate-800 mb-2" data-i18n="intro_how_title">How to Get M3U8 Links</h3>
+                <h3 class="text-base font-semibold text-slate-800 mb-2" data-i18n="intro_how_title">How to Get MPD Links</h3>
                 <p class="text-sm text-slate-600 leading-relaxed mb-3" data-i18n="intro_how_p">
-                    M3U8 links are commonly provided by streaming platforms, CDNs (Content Delivery Networks), and live broadcasting services. You can find them by inspecting network requests in your browser's developer tools (F12 → Network tab → filter by "m3u8") while a video is playing on a website. Some platforms also provide direct M3U8 URLs in their API responses or embed them in their player configurations.
+                    MPD links are provided by streaming platforms, OTT services, and CDNs that implement MPEG-DASH. You can find them by inspecting network requests in your browser's developer tools (F12 → Network tab → filter by "mpd") while a DASH video is playing. Some services also expose MPD URLs in their API responses or player manifests.
                 </p>
                 <h3 class="text-base font-semibold text-slate-800 mb-2" data-i18n="intro_use_title">Common Use Cases</h3>
                 <ul class="text-sm text-slate-600 leading-relaxed list-disc list-inside space-y-1">
-                    <li data-i18n="intro_use1">Testing and debugging live HLS streams during development</li>
-                    <li data-i18n="intro_use2">Verifying video-on-demand (VOD) M3U8 playlist integrity</li>
-                    <li data-i18n="intro_use3">Previewing adaptive bitrate streams across different quality levels</li>
-                    <li data-i18n="intro_use4">Quickly validating stream URLs before integrating into applications</li>
+                    <li data-i18n="intro_use1">Testing and debugging DASH streams during development</li>
+                    <li data-i18n="intro_use2">Verifying MPD manifest integrity and segment availability</li>
+                    <li data-i18n="intro_use3">Previewing adaptive bitrate behavior across network conditions</li>
+                    <li data-i18n="intro_use4">Validating MPEG-DASH streams before integrating into applications</li>
                 </ul>
             </div>
         </section>
@@ -371,19 +440,19 @@
             <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <a href="/" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors">
                     <h3 class="text-base font-bold text-slate-900 mb-1">Online URL Player</h3>
-                    <p class="text-sm text-slate-600">The all-in-one online URL player to play any video from a URL.</p>
+                    <p class="text-sm text-slate-600">The all-in-one player for any video URL.</p>
+                </a>
+                <a href="/m3u8-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors">
+                    <h3 class="text-base font-bold text-slate-900 mb-1">Online M3U8 Player</h3>
+                    <p class="text-sm text-slate-600">Play and test M3U8/HLS streams online.</p>
                 </a>
                 <a href="/mp4-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors">
                     <h3 class="text-base font-bold text-slate-900 mb-1">Online MP4 Player</h3>
-                    <p class="text-sm text-slate-600">Play MP4 video URLs instantly in your browser.</p>
+                    <p class="text-sm text-slate-600">Play MP4 video URLs instantly.</p>
                 </a>
                 <a href="/hls-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors">
                     <h3 class="text-base font-bold text-slate-900 mb-1">Online HLS Player</h3>
-                    <p class="text-sm text-slate-600">Play HLS live streams and on-demand video online.</p>
-                </a>
-                <a href="/dash-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors">
-                    <h3 class="text-base font-bold text-slate-900 mb-1">Online DASH Player</h3>
-                    <p class="text-sm text-slate-600">Play and test MPEG-DASH (MPD) streams online.</p>
+                    <p class="text-sm text-slate-600">Play HLS live and on-demand streams.</p>
                 </a>
             </div>
         </section>
@@ -392,24 +461,24 @@
             <h2 class="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight text-center sm:text-left" data-i18n="faq_title">Frequently Asked Questions</h2>
             <div class="grid gap-4">
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
-                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq1_q">How do I use this online M3U8 player?</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq1_a">Simply paste your M3U8 link into the input field above and click the "Play Now" button. Our player uses HLS.js to load and play the stream directly in your browser. No registration or software downloads required.</p>
+                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq1_q">How do I use this online DASH player?</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq1_a">Paste your MPD link into the input field above and click the "Play Now" button. The player uses dash.js to parse the MPD manifest and play the stream directly in your browser. No registration or software downloads required.</p>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
-                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq2_q">Does this player support HLS live streams and adaptive bitrate?</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq2_a">Yes, absolutely. This M3U8 player natively supports HLS live broadcasts, VOD playlists, and adaptive bitrate streaming (ABR). It automatically selects the best quality based on your network conditions, and you can manually switch quality levels through the player settings.</p>
+                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq2_q">Does this player support DASH live streams and adaptive bitrate?</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq2_a">Yes. This DASH player natively supports live MPD streams, VOD content, and adaptive bitrate (ABR). It automatically selects the optimal quality for your network conditions and lets you switch quality levels manually through the player settings.</p>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
-                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq3_q">Is it safe to paste and play private M3U8 links on this website?</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq3_a">Your data privacy is completely guaranteed. This application functions 100% on the client-side. The M3U8 URLs you paste are evaluated and resolved entirely inside your local browser and are never transmitted to any external backend server or database.</p>
+                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq3_q">Is it safe to paste and play private DASH links on this website?</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq3_a">Your data privacy is completely guaranteed. This application functions 100% on the client-side. The MPD URLs you paste are parsed entirely inside your local browser and are never transmitted to any external backend server or database.</p>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
-                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq4_q">Why does my M3U8 link fail to play?</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq4_a">The most common reason is CORS (Cross-Origin Resource Sharing) restrictions. Streaming servers often block direct playback from other websites. To fix this, check the "Enable Stream Proxy" option below the input field. This routes the video through our proxy server, bypassing CORS limitations. Note: We do not store or log any video content.</p>
+                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq4_q">Why does my MPD link fail to play?</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq4_a">The most common reason is CORS (Cross-Origin Resource Sharing) restrictions. DASH servers often block direct playback from other websites. To fix this, check the "Enable Stream Proxy" option below the input field. This routes requests through our proxy server, bypassing CORS limitations. Note: We do not store or log any video content.</p>
                 </div>
                 <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
-                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq5_q">What is the difference between M3U8 and MP4?</h3>
-                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq5_a">MP4 is a single-file video container format that downloads as one complete file. M3U8 is a playlist format used by HLS that divides video into small segments (typically 2-10 seconds each). This segmentation allows M3U8 streams to adapt to network conditions, support live broadcasting, and start playback faster without downloading the entire video first.</p>
+                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq5_q">What is the difference between DASH and HLS (M3U8)?</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq5_a">Both are adaptive streaming protocols. HLS (M3U8) was created by Apple and uses a playlist format; DASH (MPD) is an ISO/IEC international standard using an XML-based manifest. DASH is codec-flexible and widely used by YouTube and Netflix, while HLS has broader native device support on iOS and Safari.</p>
                 </div>
             </div>
         </section>
@@ -443,11 +512,11 @@
             nav_safe: 'Client-Side Safe',
 
             // 主标题
-            hero_title: 'Online M3U8 Player',
-            hero_subtitle: 'Play and test M3U8/HLS video streams online. Perfect for live broadcasts and on-demand content.',
+            hero_title: 'Online DASH Player',
+            hero_subtitle: 'Play and test DASH/MPD video streams online. Supports adaptive bitrate streaming and live content.',
 
             // 输入区域
-            input_placeholder: 'Paste M3U8 URL here (e.g., https://example.com/stream.m3u8)',
+            input_placeholder: 'Paste MPD URL here (e.g., https://example.com/stream.mpd)',
             btn_play: 'Play Now',
             proxy_label: 'Enable Stream Proxy',
             proxy_hint: 'Check this if your link fails due to CORS or Anti-leech errors',
@@ -456,32 +525,32 @@
             history_title: 'Recent Links',
 
             // 欢迎占位符
-            placeholder_main: 'Paste an M3U8 URL to start playing',
-            placeholder_sub: 'Supports M3U8/HLS live and on-demand streams',
+            placeholder_main: 'Paste an MPD URL to start playing',
+            placeholder_sub: 'Supports DASH/MPD live and on-demand streams',
 
-            // M3U8 介绍
-            intro_title: 'What is M3U8?',
-            intro_p1: 'M3U8 is a playlist file format used by HLS (HTTP Live Streaming), a protocol developed by Apple for delivering video content over the internet. An M3U8 file is a plain text file that contains URLs pointing to video segments, typically in .ts (Transport Stream) format. When you play an M3U8 link, the player reads the playlist and downloads the segments sequentially to provide smooth playback.',
-            intro_how_title: 'How to Get M3U8 Links',
-            intro_how_p: 'M3U8 links are commonly provided by streaming platforms, CDNs (Content Delivery Networks), and live broadcasting services. You can find them by inspecting network requests in your browser\'s developer tools (F12 → Network tab → filter by "m3u8") while a video is playing on a website. Some platforms also provide direct M3U8 URLs in their API responses or embed them in their player configurations.',
+            // DASH 介绍
+            intro_title: 'What is DASH?',
+            intro_p1: 'DASH (Dynamic Adaptive Streaming over HTTP) is an international standard (ISO/IEC 23009-1) for streaming video over HTTP. It works by dividing video content into small segments and delivering them via a Media Presentation Description (MPD) file, an XML-based manifest that lists available resolutions, bitrates, and segment locations. The player reads the MPD, selects the best quality based on your bandwidth, and adapts dynamically as network conditions change.',
+            intro_how_title: 'How to Get MPD Links',
+            intro_how_p: 'MPD links are provided by streaming platforms, OTT services, and CDNs that implement MPEG-DASH. You can find them by inspecting network requests in your browser\'s developer tools (F12 → Network tab → filter by "mpd") while a DASH video is playing. Some services also expose MPD URLs in their API responses or player manifests.',
             intro_use_title: 'Common Use Cases',
-            intro_use1: 'Testing and debugging live HLS streams during development',
-            intro_use2: 'Verifying video-on-demand (VOD) M3U8 playlist integrity',
-            intro_use3: 'Previewing adaptive bitrate streams across different quality levels',
-            intro_use4: 'Quickly validating stream URLs before integrating into applications',
+            intro_use1: 'Testing and debugging DASH streams during development',
+            intro_use2: 'Verifying MPD manifest integrity and segment availability',
+            intro_use3: 'Previewing adaptive bitrate behavior across network conditions',
+            intro_use4: 'Validating MPEG-DASH streams before integrating into applications',
 
             // FAQ
             faq_title: 'Frequently Asked Questions',
-            faq1_q: 'How do I use this online M3U8 player?',
-            faq1_a: 'Simply paste your M3U8 link into the input field above and click the "Play Now" button. Our player uses HLS.js to load and play the stream directly in your browser. No registration or software downloads required.',
-            faq2_q: 'Does this player support HLS live streams and adaptive bitrate?',
-            faq2_a: 'Yes, absolutely. This M3U8 player natively supports HLS live broadcasts, VOD playlists, and adaptive bitrate streaming (ABR). It automatically selects the best quality based on your network conditions, and you can manually switch quality levels through the player settings.',
-            faq3_q: 'Is it safe to paste and play private M3U8 links on this website?',
-            faq3_a: 'Your data privacy is completely guaranteed. This application functions 100% on the client-side. The M3U8 URLs you paste are evaluated and resolved entirely inside your local browser and are never transmitted to any external backend server or database.',
-            faq4_q: 'Why does my M3U8 link fail to play?',
-            faq4_a: 'The most common reason is CORS (Cross-Origin Resource Sharing) restrictions. Streaming servers often block direct playback from other websites. To fix this, check the "Enable Stream Proxy" option below the input field. This routes the video through our proxy server, bypassing CORS limitations. Note: We do not store or log any video content.',
-            faq5_q: 'What is the difference between M3U8 and MP4?',
-            faq5_a: 'MP4 is a single-file video container format that downloads as one complete file. M3U8 is a playlist format used by HLS that divides video into small segments (typically 2-10 seconds each). This segmentation allows M3U8 streams to adapt to network conditions, support live broadcasting, and start playback faster without downloading the entire video first.',
+            faq1_q: 'How do I use this online DASH player?',
+            faq1_a: 'Paste your MPD link into the input field above and click the "Play Now" button. The player uses dash.js to parse the MPD manifest and play the stream directly in your browser. No registration or software downloads required.',
+            faq2_q: 'Does this player support DASH live streams and adaptive bitrate?',
+            faq2_a: 'Yes. This DASH player natively supports live MPD streams, VOD content, and adaptive bitrate (ABR). It automatically selects the optimal quality for your network conditions and lets you switch quality levels manually through the player settings.',
+            faq3_q: 'Is it safe to paste and play private DASH links on this website?',
+            faq3_a: 'Your data privacy is completely guaranteed. This application functions 100% on the client-side. The MPD URLs you paste are parsed entirely inside your local browser and are never transmitted to any external backend server or database.',
+            faq4_q: 'Why does my MPD link fail to play?',
+            faq4_a: 'The most common reason is CORS (Cross-Origin Resource Sharing) restrictions. DASH servers often block direct playback from other websites. To fix this, check the "Enable Stream Proxy" option below the input field. This routes requests through our proxy server, bypassing CORS limitations. Note: We do not store or log any video content.',
+            faq5_q: 'What is the difference between DASH and HLS (M3U8)?',
+            faq5_a: 'Both are adaptive streaming protocols. HLS (M3U8) was created by Apple and uses a playlist format; DASH (MPD) is an ISO/IEC international standard using an XML-based manifest. DASH is codec-flexible and widely used by YouTube and Netflix, while HLS has broader native device support on iOS and Safari.',
 
             // 错误提示
             error_cors: 'This video link has CORS restrictions',
@@ -493,9 +562,9 @@
             error_retry: 'Retry',
             error_proxy_hint: 'Please check "Enable Stream Proxy" and try again',
             error_url_hint: 'Please check if the link is correct',
-            error_format_hint: 'Supports M3U8/HLS streams',
+            error_format_hint: 'Supports DASH/MPD streams',
             error_network_hint: 'Please check your network and try again',
-            error_empty_url: 'Please enter a valid M3U8 link.',
+            error_empty_url: 'Please enter a valid MPD link.',
             error_invalid_url: 'URL must start with http:// or https://'
           },
           zh: {
@@ -504,11 +573,11 @@
             nav_safe: '客户端安全',
 
             // 主标题
-            hero_title: '在线 M3U8 播放器',
-            hero_subtitle: '在线播放和测试 M3U8/HLS 视频流。适合直播和点播内容。',
+            hero_title: '在线 DASH 播放器',
+            hero_subtitle: '在线播放和测试 DASH/MPD 视频流。支持自适应码率流媒体和直播内容。',
 
             // 输入区域
-            input_placeholder: '粘贴 M3U8 链接（如 https://example.com/stream.m3u8）',
+            input_placeholder: '粘贴 MPD 链接（如 https://example.com/stream.mpd）',
             btn_play: '立即播放',
             proxy_label: '启用流代理',
             proxy_hint: '如果链接因跨域或防盗链失败，请勾选此项',
@@ -517,32 +586,32 @@
             history_title: '最近播放',
 
             // 欢迎占位符
-            placeholder_main: '粘贴 M3U8 链接开始播放',
-            placeholder_sub: '支持 M3U8/HLS 直播和点播流',
+            placeholder_main: '粘贴 MPD 链接开始播放',
+            placeholder_sub: '支持 DASH/MPD 直播和点播流',
 
-            // M3U8 介绍
-            intro_title: '什么是 M3U8？',
-            intro_p1: 'M3U8 是 HLS（HTTP Live Streaming）使用的播放列表文件格式，HLS 是 Apple 开发的用于在互联网上传输视频内容的协议。M3U8 文件是一个纯文本文件，包含指向视频片段的 URL，这些片段通常是 .ts（Transport Stream）格式。当你播放 M3U8 链接时，播放器会读取播放列表并按顺序下载片段，以提供流畅的播放体验。',
-            intro_how_title: '如何获取 M3U8 链接',
-            intro_how_p: 'M3U8 链接通常由流媒体平台、CDN（内容分发网络）和直播服务提供。你可以在网站播放视频时，通过浏览器开发者工具（F12 → 网络选项卡 → 筛选 "m3u8"）检查网络请求来找到它们。一些平台也会在 API 响应中提供直接的 M3U8 URL，或将其嵌入播放器配置中。',
+            // DASH 介绍
+            intro_title: '什么是 DASH？',
+            intro_p1: 'DASH（基于 HTTP 的动态自适应流媒体）是一项国际标准（ISO/IEC 23009-1），用于通过 HTTP 传输视频。它将视频内容分割成小片段，并通过媒体呈现描述（MPD）文件来分发。MPD 是一个基于 XML 的清单文件，列出可用的分辨率、码率和片段地址。播放器读取 MPD 后，会根据带宽选择最佳画质，并随网络条件变化动态自适应。',
+            intro_how_title: '如何获取 MPD 链接',
+            intro_how_p: 'MPD 链接由实现 MPEG-DASH 的流媒体平台、OTT 服务和 CDN 提供。你可以在网站播放 DASH 视频时，通过浏览器开发者工具（F12 → 网络选项卡 → 筛选 "mpd"）检查网络请求来找到它们。一些服务也会在 API 响应或播放器清单中暴露 MPD URL。',
             intro_use_title: '常见使用场景',
-            intro_use1: '开发过程中测试和调试 HLS 直播流',
-            intro_use2: '验证点播（VOD）M3U8 播放列表的完整性',
-            intro_use3: '预览不同画质级别的自适应码率流',
-            intro_use4: '在集成到应用之前快速验证流地址',
+            intro_use1: '开发过程中测试和调试 DASH 流',
+            intro_use2: '验证 MPD 清单完整性和片段可用性',
+            intro_use3: '预览不同网络条件下的自适应码率行为',
+            intro_use4: '在集成到应用之前验证 MPEG-DASH 流',
 
             // FAQ
             faq_title: '常见问题',
-            faq1_q: '如何使用这个在线 M3U8 播放器？',
-            faq1_a: '只需将 M3U8 链接粘贴到上方输入框中，点击"立即播放"按钮。播放器使用 HLS.js 直接在浏览器中加载和播放流，无需注册或下载软件。',
-            faq2_q: '支持 HLS 直播流和自适应码率吗？',
-            faq2_a: '完全支持。此 M3U8 播放器原生支持 HLS 直播、VOD 播放列表和自适应码率流（ABR）。它会根据网络条件自动选择最佳画质，你也可以通过播放器设置手动切换画质。',
-            faq3_q: '在这个网站上粘贴和播放私密 M3U8 链接安全吗？',
-            faq3_a: '您的数据隐私完全有保障。此应用 100% 在客户端运行，粘贴的 M3U8 链接完全在本地浏览器中解析，不会传输到任何外部服务器或数据库。',
-            faq4_q: '为什么我的 M3U8 链接无法播放？',
-            faq4_a: '最常见的原因是 CORS（跨域资源共享）限制。流媒体服务器通常会阻止其他网站的直接播放。要解决此问题，请勾选输入框下方的"启用流代理"选项。这会将视频通过我们的代理服务器转发，绕过 CORS 限制。注意：我们不会存储或记录任何视频内容。',
-            faq5_q: 'M3U8 和 MP4 有什么区别？',
-            faq5_a: 'MP4 是单文件视频容器格式，作为完整文件下载。M3U8 是 HLS 使用的播放列表格式，将视频分成小片段（通常每段 2-10 秒）。这种分段机制使 M3U8 流能够自适应网络条件、支持直播，并且无需下载整个视频即可开始播放。',
+            faq1_q: '如何使用这个在线 DASH 播放器？',
+            faq1_a: '只需将 MPD 链接粘贴到上方输入框中，点击"立即播放"按钮。播放器使用 dash.js 解析 MPD 清单并直接在浏览器中播放，无需注册或下载软件。',
+            faq2_q: '支持 DASH 直播流和自适应码率吗？',
+            faq2_a: '支持。此 DASH 播放器原生支持直播 MPD 流、点播内容和自适应码率（ABR）。它会根据网络条件自动选择最佳画质，你也可以通过播放器设置手动切换画质。',
+            faq3_q: '在这个网站上粘贴和播放私密 DASH 链接安全吗？',
+            faq3_a: '您的数据隐私完全有保障。此应用 100% 在客户端运行，粘贴的 MPD 链接完全在本地浏览器中解析，不会传输到任何外部服务器或数据库。',
+            faq4_q: '为什么我的 MPD 链接无法播放？',
+            faq4_a: '最常见的原因是 CORS（跨域资源共享）限制。DASH 服务器通常会阻止其他网站的直接播放。要解决此问题，请勾选输入框下方的"启用流代理"选项。这会将请求通过我们的代理服务器转发，绕过 CORS 限制。注意：我们不会存储或记录任何视频内容。',
+            faq5_q: 'DASH 和 HLS（M3U8）有什么区别？',
+            faq5_a: '两者都是自适应流媒体协议。HLS（M3U8）由 Apple 创建，使用播放列表格式；DASH（MPD）是 ISO/IEC 国际标准，使用基于 XML 的清单。DASH 编解码器灵活，被 YouTube 和 Netflix 广泛使用，而 HLS 在 iOS 和 Safari 上有更好的原生设备支持。',
 
             // 错误提示
             error_cors: '此视频链接存在跨域限制',
@@ -554,9 +623,9 @@
             error_retry: '重试',
             error_proxy_hint: '请勾选"启用流代理"后重试',
             error_url_hint: '请检查链接是否正确',
-            error_format_hint: '支持 M3U8/HLS 流',
+            error_format_hint: '支持 DASH/MPD 流',
             error_network_hint: '请检查网络后重试',
-            error_empty_url: '请输入有效的 M3U8 链接。',
+            error_empty_url: '请输入有效的 MPD 链接。',
             error_invalid_url: 'URL 必须以 http:// 或 https:// 开头'
           }
         };
@@ -596,9 +665,9 @@
         }
 
         let art = null;
-        let hlsInstance = null;
+        let dashInstance = null;
         const STORAGE_KEY = 'online_videoplayer_history_v1';
-        // CF Workers 代理网关地址预留（后期建立反跨域技术壁垒时配置）
+        // CF Workers 代理网关地址
         const PROXY_GATEWAY = 'https://onlineurlplayer.wangjing09527.workers.dev/?url=';
 
         // 主题切换逻辑
@@ -662,20 +731,20 @@
            const title = document.getElementById('error-title');
            const message = document.getElementById('error-message');
            const suggestion = document.getElementById('error-suggestion');
-           
+
            let errorType = 'network';
            const errStr = (error && (error.message || error.type || String(error))) || '';
-           
+
             if (errStr.includes('CORS') || errStr.includes('cors') || errStr.includes('cross-origin')) {
               errorType = 'cors';
             } else if (errStr.includes('AUTH') || errStr.includes('401') || errStr.includes('Unauthorized')) {
               errorType = 'auth';
             } else if (errStr.includes('404') || errStr.includes('notFound') || errStr.includes('Not Found')) {
               errorType = 'notFound';
-            } else if (errStr.includes('format') || errStr.includes('FORMAT') || errStr.includes('MEDIA_ERR_SRC_NOT_SUPPORTED') || errStr.includes('DEMUX')) {
+            } else if (errStr.includes('format') || errStr.includes('FORMAT') || errStr.includes('MEDIA_ERR_SRC_NOT_SUPPORTED') || errStr.includes('DEMUX') || errStr.includes('codec') || errStr.includes('Codec')) {
               errorType = 'format';
             }
-          
+
            const errorInfo = {
              cors: {
                title: t('error_cors'),
@@ -703,13 +772,13 @@
               suggestion: t('error_network_hint')
             }
           };
-          
+
           const info = errorInfo[errorType] || errorInfo.network;
-          
+
           title.textContent = info.title;
           message.textContent = info.message;
           suggestion.textContent = info.suggestion;
-          
+
           overlay.classList.remove('hidden');
         }
 
@@ -747,15 +816,18 @@
           }
         }
 
-        function isM3U8(url) {
+        function isMPD(url) {
             const cleanUrl = url.split('?')[0].split('#')[0].toLowerCase();
-            return cleanUrl.endsWith('.m3u8');
+            return cleanUrl.endsWith('.mpd');
         }
 
         // 核心函数：根据资源类型构建/重建 ArtPlayer 实例
         function initializePlayer(targetUrl) {
             if (art) { art.destroy(); }
-            if (hlsInstance) { hlsInstance.destroy(); hlsInstance = null; }
+            if (dashInstance) {
+                try { dashInstance.reset(); } catch(e) {}
+                dashInstance = null;
+            }
 
             // 移除欢迎占位符
             const placeholder = document.getElementById('welcome-placeholder');
@@ -768,7 +840,7 @@
             const currentTheme = document.documentElement.getAttribute('data-theme');
             const themeColor = currentTheme === 'dark' ? '#3b82f6' : '#2563eb';
 
-            const needCustomType = isM3U8(targetUrl);
+            const needCustomType = isMPD(targetUrl);
 
             const artOptions = {
                 container: '#player-container',
@@ -784,41 +856,45 @@
             };
 
             if (needCustomType) {
-                artOptions.type = 'm3u8';
+                artOptions.type = 'mpd';
                 artOptions.customType = {
-                    m3u8: function(video, url) {
-                        if (Hls.isSupported()) {
-                            const hlsConfig = { maxMaxBufferLength: 30 };
+                    mpd: function(video, url) {
+                        if (typeof dashjs === 'undefined') {
+                            showError({ message: 'format MEDIA_ERR_SRC_NOT_SUPPORTED' });
+                            return;
+                        }
+                        try {
+                            dashInstance = dashjs.MediaPlayer().create();
+
+                            // 代理：通过 RequestModifier 拦截所有 manifest 与 segment 请求
                             if (isProxyEnabled) {
-                                hlsConfig.xhrSetup = function(xhr, requestUrl) {
-                                    xhr.open('GET', PROXY_GATEWAY + encodeURIComponent(requestUrl));
-                                };
+                                dashInstance.extend('RequestModifier', function() {
+                                    return {
+                                        modifyRequestHeader: function(xhr) { return xhr; },
+                                        modifyRequestURL: function(reqUrl) {
+                                            return PROXY_GATEWAY + encodeURIComponent(reqUrl);
+                                        }
+                                    };
+                                }, true);
                             }
-                            hlsInstance = new Hls(hlsConfig);
-                            hlsInstance.loadSource(url);
-                            hlsInstance.attachMedia(video);
-                            hlsInstance.on(Hls.Events.ERROR, function(event, data) {
-                                if (data.fatal) {
-                                    switch (data.type) {
-                                        case Hls.ErrorTypes.NETWORK_ERROR:
-                                            if (data.response && data.response.code === 401) {
-                                                showError({ message: 'AUTH' });
-                                            } else {
-                                                showError({ message: 'CORS' });
-                                            }
-                                            break;
-                                        case Hls.ErrorTypes.MEDIA_ERROR:
-                                            hlsInstance.recoverMediaError();
-                                            break;
-                                        default:
-                                            showError({ message: 'format' });
-                                            hlsInstance.destroy();
-                                            break;
-                                    }
+
+                            dashInstance.initialize(video, url, false);
+
+                            dashInstance.on(dashjs.MediaPlayer.events.ERROR, function(e) {
+                                const errObj = e && e.error ? e.error : e;
+                                const msg = (errObj && (errObj.message || errObj.code)) ? String(errObj.message || errObj.code) : '';
+                                if (msg.includes('401') || msg.includes('Unauthorized')) {
+                                    showError({ message: 'AUTH' });
+                                } else if (msg.includes('404') || msg.includes('Not Found')) {
+                                    showError({ message: 'notFound' });
+                                } else if (msg.includes('codec') || msg.includes('Codec') || msg.includes('MEDIA_ERR') || msg.includes('manifest') || msg.includes('parse')) {
+                                    showError({ message: 'format' });
+                                } else {
+                                    showError({ message: 'CORS' });
                                 }
                             });
-                        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                            video.src = isProxyEnabled ? `${PROXY_GATEWAY}${encodeURIComponent(url)}` : url;
+                        } catch (err) {
+                            showError({ message: 'format ' + (err && err.message ? err.message : '') });
                         }
                     }
                 };
