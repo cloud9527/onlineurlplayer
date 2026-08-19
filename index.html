@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Online URL Player - Play M3U8, MP4, HLS, DASH, WebM Streams</title>
-    <meta name="description" content="Free online URL player to play any video from a URL. Test M3U8, HLS, MP4, DASH and WebM streams instantly in your browser - no registration, 100% client-side.">
+    <title>Online URL Player & Link Player - Play Any Video from URL</title>
+    <meta name="description" content="Free online URL player and link player to play any video from a URL. Paste a link and instantly test M3U8, HLS, MP4, DASH and WebM streams in your browser - no registration, 100% client-side.">
 
-    <meta property="og:title" content="Online URL Player - Play Any Video from a URL">
-    <meta property="og:description" content="Free online URL player to play any video from a URL. Test M3U8, HLS, MP4, DASH and WebM streams instantly - 100% client-side, no registration.">
+    <meta property="og:title" content="Online URL Player & Link Player - Play Any Video from URL">
+    <meta property="og:description" content="Free online URL player and link player to play any video from a URL. Paste a link and instantly test M3U8, HLS, MP4, DASH and WebM streams - 100% client-side, no registration.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://onlineurlplayer.com/">
 
@@ -18,7 +18,7 @@
       "@type": "WebApplication",
       "name": "Online URL Player",
       "url": "https://onlineurlplayer.com",
-      "description": "Free online URL player to play any video from a URL. Supports M3U8, MP4, HLS, DASH, FLV, and WebM streams.",
+      "description": "Free online URL player and link player to play any video from a URL. Supports M3U8, MP4, HLS, DASH, FLV, and WebM streams. Use this online link player to play video from a link instantly.",
       "applicationCategory": "MultimediaApplication",
       "operatingSystem": "All",
       "browserRequirements": "Requires HTML5 support.",
@@ -33,7 +33,8 @@
         "Play WebM videos",
         "Play DASH streams",
         "CORS proxy support",
-        "No registration required"
+        "No registration required",
+        "Online link player for any video URL"
       ]
     }
     </script>
@@ -113,6 +114,14 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Your data privacy is completely guaranteed. This application functions 100% on the client-side. The URLs you paste are evaluated and resolved entirely inside your local browser and are never transmitted to any external backend server or database."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is an online link player?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An online link player is a browser-based tool that lets you paste any video link - M3U8, HLS, MP4, DASH or WebM - and play it instantly without downloading a file. Our online link player runs 100% in your browser, detects the stream format automatically, and supports CORS-protected URLs via an optional Stream Proxy. It is the fastest way to play video from a link for testing, previews or quick sharing."
           }
         }
       ]
@@ -561,6 +570,10 @@
                     <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq9_q">How do I play a private or password-protected URL?</h3>
                     <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq9_a">If the source requires a token or login (HTTP 401), the link cannot be played directly for security reasons. For CORS-protected but public links, enable Stream Proxy. For authenticated sources, the online URL player cannot bypass the login.</p>
                 </div>
+                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-xs">
+                    <h3 class="text-base font-bold text-slate-900 mb-2" data-i18n="faq10_q">What is an online link player?</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed" data-i18n="faq10_a">An online link player is a browser-based tool that lets you paste any video link - M3U8, HLS, MP4, DASH or WebM - and play it instantly without downloading a file. Our online link player runs 100% in your browser, detects the stream format automatically, and supports CORS-protected URLs via an optional Stream Proxy. It is the fastest way to play video from a link for testing, previews or quick sharing.</p>
+                </div>
             </div>
         </section>
 
@@ -594,7 +607,7 @@
 
             // 主标题
             hero_title: 'Online URL Player - Play Any Video from a URL',
-            hero_subtitle: 'A fast, free online URL player to play any video from a URL. Perfect for testing M3U8, HLS and MP4 streams with instant playback.',
+            hero_subtitle: 'A fast, free online URL player and link player. Just paste a link to play any video - perfect for testing M3U8, HLS, MP4, DASH and WebM streams instantly.',
 
             // 输入区域
             input_placeholder: 'Paste video URL here (e.g., https://example.com/movie.mp4 or .m3u8)',
@@ -644,7 +657,7 @@
 
             // 主标题
             hero_title: '在线 URL 播放器 - 从任意链接播放视频',
-            hero_subtitle: '免费、快速的在线 URL 播放器，从任意链接播放视频。适合测试 M3U8、HLS 与 MP4 流媒体，即点即播。',
+            hero_subtitle: '免费、快速的在线 URL 播放器和在线 link player。粘贴一个链接就能播放任意视频 - 适合即时测试 M3U8、HLS、MP4、DASH、WebM 流媒体。',
 
             // 输入区域
             input_placeholder: '粘贴视频链接（如 https://example.com/movie.mp4 或 .m3u8）',
@@ -679,13 +692,15 @@
             faq8_a: '除了 M3U8/HLS，在线 URL 播放器还支持 MP4、DASH、WebM 和 FLV 链接。你可以把它当作在线 MP4 播放器、HLS 播放器，或用于任何兼容流的通用 URL 播放器。',
             faq9_q: '如何播放私有或带密码的链接？',
             faq9_a: '如果源站需要令牌或登录（HTTP 401），出于安全原因无法直接播放。对公开但受 CORS 保护的链接，可启用流代理；对需要鉴权的源，在线 URL 播放器无法绕过登录。',
+            faq10_q: '什么是在线 link player？',
+            faq10_a: '在线 link player（在线链接播放器）是一种基于浏览器的工具，你可以粘贴任何视频链接——M3U8、HLS、MP4、DASH、WebM——无需下载即可在浏览器中立即播放。我们的在线 link player 100% 在你的浏览器中运行，自动识别流媒体格式，并通过可选的 Stream Proxy 支持 CORS 受保护的链接。它是从链接播放视频进行测试、预览、快速分享最快的方式。',
             sec_what: '<h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">什么是在线 URL 播放器？</h2><p class="text-sm text-slate-600 leading-relaxed mb-4"><strong>在线 URL 播放器</strong>是一种网页工具，无需下载任何软件，就能直接从链接播放视频。你不必先保存文件，只需粘贴视频直链，在线 URL 播放器就会在浏览器中直接串流播放。无论源是 MP4 文件、M3U8/HLS 直播流、DASH 清单还是 WebM 片段，好的在线 URL 播放器都能自动识别封装格式并在几秒内开始播放。这使它成为在网页上预览、测试和验证任何远程视频链接最快的方式。</p><p class="text-sm text-slate-600 leading-relaxed mb-4">「在线 URL 播放器」这个名称正好说明了它的作用：<em>在线</em>（免安装）、以 <em>URL</em>（网址）为输入、并且是一个能<em>播放</em>几乎所有内容的<em>播放器</em>。我们的工具让你可以用在线 URL 播放器轻松播放公开流、私有测试端点和 CDN 文件。</p>',
             sec_how: '<h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">三步从 URL 播放视频</h2><p class="text-sm text-slate-600 leading-relaxed mb-4">用我们的在线 URL 播放器播放媒体不到一分钟：</p><ol class="list-decimal list-inside text-sm text-slate-600 leading-relaxed mb-4 space-y-2"><li>复制视频直链（例如 <code class="bg-slate-100 px-1 rounded">https://example.com/movie.mp4</code> 或 <code class="bg-slate-100 px-1 rounded">.m3u8</code> 播放列表）。</li><li>把链接粘贴到本页顶部的输入框。</li><li>点击<strong>立即播放</strong>。在线 URL 播放器会识别格式、加载流并立即开始播放。</li></ol><p class="text-sm text-slate-600 leading-relaxed mb-4">如果链接因跨域（CORS）或防盗链保护而失败，勾选<strong>启用流代理</strong>，在线 URL 播放器会通过我们的代理获取媒体从而正常播放。这是播放那些被外站屏蔽链接最简单的方法。</p>',
             sec_formats: '<h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">支持的格式</h2><p class="text-sm text-slate-600 leading-relaxed mb-4">我们的在线 URL 播放器支持网页上最常用的流媒体和文件格式：</p><ul class="list-disc list-inside text-sm text-slate-600 leading-relaxed mb-4 space-y-2"><li><strong>MP4</strong> - 通用视频文件，在所有现代浏览器中原生播放。</li><li><strong>M3U8 / HLS</strong> - Apple 的 HTTP Live Streaming 播放列表，用于直播与点播，自动自适应画质。</li><li><strong>DASH</strong> - 用于大型目录和直播活动的 MPEG-DASH 自适应流。</li><li><strong>WebM</strong> - 开放高效的格式，适合快速网页分发。</li><li><strong>FLV</strong> - 传统 Flash 视频封装，必要时通过代理处理。</li></ul><p class="text-sm text-slate-600 leading-relaxed mb-4">无论什么格式，这个在线 URL 播放器都为你提供播放任意链接的统一入口。</p>',
             sec_cases: '<h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">在线 URL 播放器的使用场景</h2><p class="text-sm text-slate-600 leading-relaxed mb-4">开发者和视频团队每天都会用到在线 URL 播放器：</p><ul class="list-disc list-inside text-sm text-slate-600 leading-relaxed mb-4 space-y-2"><li><strong>流媒体测试</strong> - 在上线前确认新的 M3U8 或 HLS 端点确实能播放。</li><li><strong>IPTV 与直播源检查</strong> - 验证直播频道 URL，及早发现失效分片。</li><li><strong>发布前预览</strong> - 确保 CDN 链接在桌面和移动端都能正常渲染。</li><li><strong>CORS 排查</strong> - 用代理模式判断链接失败是否因跨域限制。</li><li><strong>快速分享</strong> - 在干净无干扰的播放器里打开任意视频链接给同事看。</li></ul><p class="text-sm text-slate-600 leading-relaxed mb-4">在线 URL 播放器一键把裸链接变成可观看的视频，这就是它成为每位视频工程师常备工具的原因。</p>',
             sec_why: '<h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">为什么选择这个在线 URL 播放器</h2><p class="text-sm text-slate-600 leading-relaxed mb-4">这个在线 URL 播放器为快速、私密和免费而生。它 100% 在客户端运行，你粘贴的链接只在自己的浏览器中解析，绝不上传到任何服务器。无需注册、无需安装、无水印。内置 CORS 代理可处理受保护链接，历史列表保留你最近的链接，明暗主题随你喜好切换。响应式布局让在线 URL 播放器在手机和桌面上都同样好用。这个在线 URL 播放器可直接从任意链接播放 M3U8、MP4、HLS、DASH 和 WebM 流。</p>',
             sec_tips: '<h2 class="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">故障排查与技巧</h2><ul class="list-disc list-inside text-sm text-slate-600 leading-relaxed mb-4 space-y-2"><li><strong>黑屏或网络错误</strong> - 链接可能已失效或需要登录，请重新检查 URL。</li><li><strong>CORS / 跨域错误</strong> - 启用流代理，让在线 URL 播放器绕过该限制。</li><li><strong>401 未授权</strong> - 源站需要令牌，此类链接无法直接播放。</li><li><strong>不支持的格式</strong> - 仅支持 MP4、M3U8/HLS、DASH、WebM 和 FLV。</li><li><strong>卡顿缓冲</strong> - 降低画质或检查网络；HLS 直播会自动自适应。</li></ul><p class="text-sm text-slate-600 leading-relaxed mb-4">记住这些技巧，能让在线 URL 播放器为任意链接提供流畅播放。</p>',
-            sec_more: '<h2 class="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight">更多在线播放器</h2><div class="grid sm:grid-cols-3 gap-4"><a href="/m3u8-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors"><h3 class="text-base font-bold text-slate-900 mb-1">在线 M3U8 播放器</h3><p class="text-sm text-slate-600">用我们专用的在线 URL 播放器在线播放并测试 M3U8/HLS 直播与点播流。</p></a><a href="/mp4-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors"><h3 class="text-base font-bold text-slate-900 mb-1">在线 MP4 播放器</h3><p class="text-sm text-slate-600">用这个专注的在线 URL 播放器在浏览器中即时播放 MP4 视频链接。</p></a><a href="/hls-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors"><h3 class="text-base font-bold text-slate-900 mb-1">在线 HLS 播放器</h3><p class="text-sm text-slate-600">使用同样可靠的在线 URL 播放器在线播放 HLS 直播流与点播视频。</p></a></div>',
+            sec_more: '<h2 class="text-2xl font-extrabold text-slate-900 mb-6 tracking-tight">更多在线播放器</h2><div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"><a href="/m3u8-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors"><h3 class="text-base font-bold text-slate-900 mb-1">在线 M3U8 播放器</h3><p class="text-sm text-slate-600">用我们专用的在线 URL 播放器在线播放并测试 M3U8/HLS 直播与点播流。</p></a><a href="/mp4-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors"><h3 class="text-base font-bold text-slate-900 mb-1">在线 MP4 播放器</h3><p class="text-sm text-slate-600">用这个专注的在线 URL 播放器在浏览器中即时播放 MP4 视频链接。</p></a><a href="/hls-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors"><h3 class="text-base font-bold text-slate-900 mb-1">在线 HLS 播放器</h3><p class="text-sm text-slate-600">使用同样可靠的在线 URL 播放器在线播放 HLS 直播流与点播视频。</p></a><a href="/dash-player" class="block bg-white p-5 rounded-xl border border-slate-200 shadow-xs hover:border-blue-500 transition-colors"><h3 class="text-base font-bold text-slate-900 mb-1">在线 DASH 播放器</h3><p class="text-sm text-slate-600">用这个专用的在线 URL 播放器在线播放并测试 MPEG-DASH (MPD) 流。</p></a></div>',
 
             // 错误提示
             error_cors: '此视频链接存在跨域限制',
