@@ -16,3 +16,7 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Local agent memory & config (not for public repo)
+.workbuddy/
+.claude/

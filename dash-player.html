@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/src/site.config.js"></script>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
@@ -496,16 +497,23 @@
 
     <footer class="bg-white border-t border-slate-200 mt-auto">
         <div class="max-w-5xl mx-auto px-4 h-16 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400 font-medium py-4">
-            <div>© 2026 OnlineURLPlayer. All rights reserved.</div>
+            <div>© 2026 <a href="https://onlineurlplayer.com" class="hover:underline">Online URL Player</a>. All rights reserved.</div>
             <div class="flex gap-4">
                 <a href="#" class="hover:underline">Privacy Policy</a>
                 <a href="#" class="hover:underline">Terms of Service</a>
-                <a href="mailto:support@onlineurlplayer.com" class="hover:underline">Contact</a>
+                <a id="contact-email" href="mailto:support@onlineurlplayer.com" class="hover:underline">Contact</a>
             </div>
         </div>
     </footer>
 
     <script>
+        // 应用站点配置（Footer Contact 邮箱来自 src/site.config.js）
+        (function () {
+          var cfg = window.SITE_CONFIG || {};
+          var contact = document.getElementById('contact-email');
+          if (cfg.supportEmail && contact) { contact.href = 'mailto:' + cfg.supportEmail; }
+        })();
+
         // 多语言配置
         const i18n = {
           en: {
@@ -670,7 +678,7 @@
         let dashInstance = null;
         const STORAGE_KEY = 'online_videoplayer_history_v1';
         // CF Workers 代理网关地址
-        const PROXY_GATEWAY = 'https://onlineurlplayer.wangjing09527.workers.dev/?url=';
+        const PROXY_GATEWAY = (window.SITE_CONFIG && window.SITE_CONFIG.proxyGateway) || 'https://onlineurlplayer.wangjing09527.workers.dev/?url=';
 
         // 主题切换逻辑
         function toggleTheme() {
