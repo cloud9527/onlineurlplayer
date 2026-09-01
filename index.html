@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
     <title>Online URL Player & Link Player - Play Any Video from URL</title>
     <meta name="description" content="Free online URL player and link player to play any video from a URL. Paste a link and instantly test M3U8, HLS, MP4, DASH and WebM streams in your browser - no registration, 100% client-side.">
@@ -128,7 +130,7 @@
     }
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="/assets/tailwind.css">
     <script defer src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/artplayer/dist/artplayer.js"></script>
 
@@ -406,7 +408,7 @@
                 </div>
             </div>
             <!-- 错误提示 -->
-            <div id="error-overlay" class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden" style="z-index: 20;">
+            <div id="error-overlay" class="absolute inset-0 bg-black/75 flex items-center justify-center hidden" style="z-index: 20;">
                 <div class="text-center max-w-md mx-4">
                     <div class="bg-white rounded-lg p-6 shadow-xl">
                         <div class="text-red-500 mb-4">

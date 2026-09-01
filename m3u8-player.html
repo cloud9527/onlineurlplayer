@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
 
     <title>Online M3U8 Player - Play M3U8/HLS Streams Online</title>
     <meta name="description" content="Free online M3U8 player. Play and test M3U8/HLS video streams instantly. Paste your M3U8 link and play live or on-demand streams. Works as a free online link player for any M3U8 or HLS URL. No registration required.">
@@ -48,7 +50,7 @@
     <meta name="twitter:description" content="Play and test M3U8/HLS video streams online. Supports live broadcasts and on-demand content. 100% client-side, no registration required.">
     <meta name="twitter:image" content="https://onlineurlplayer.com/og-image.png">
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="/assets/tailwind.css">
     <script defer src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/artplayer/dist/artplayer.js"></script>
 
@@ -315,7 +317,7 @@
                 </div>
             </div>
             <!-- 错误提示 -->
-            <div id="error-overlay" class="absolute inset-0 bg-black bg-opacity-75 flex items-center justify-center hidden" style="z-index: 20;">
+            <div id="error-overlay" class="absolute inset-0 bg-black/75 flex items-center justify-center hidden" style="z-index: 20;">
                 <div class="text-center max-w-md mx-4">
                     <div class="bg-white rounded-lg p-6 shadow-xl">
                         <div class="text-red-500 mb-4">

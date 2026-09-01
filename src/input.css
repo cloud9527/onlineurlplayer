@@ -1,0 +1,8 @@
+@import "tailwindcss";
+
+@source "../index.html";
+@source "../m3u8-player.html";
+@source "../mp4-player.html";
+@source "../hls-player.html";
+@source "../dash-player.html";
+@source "../404.html";
